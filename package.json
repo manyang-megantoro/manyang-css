@@ -18,7 +18,9 @@
     "watch:sass": "sass --watch src/manyang.scss:dist/manyang.sass.css",
     "watch:post": "postcss dist/manyang.sass.css --config ./postcss.config.js -o dist/manyang.css --watch",
     "watch": "npm-run-all --parallel watch:sass watch:post",
-    "prepare-demo": "npm run build && node ./scripts/copy-to-docs.js"
+    "prepare-demo": "npm run build && node ./scripts/copy-to-docs.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint": "echo \"No linting configured\" && exit 0"
   },
   "keywords": [
     "css",
