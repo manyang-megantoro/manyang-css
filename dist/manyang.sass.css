@@ -1,0 +1,49 @@
+:root {
+  --mc-bg: #ffffff;
+  --mc-text: #0f172a;
+  --mc-accent: #7c5cff;
+  --mc-radius: 8px;
+  --mc-border: rgba(15,23,42,.06);
+}
+
+.h-fade {
+  transition: opacity 0.3s;
+}
+.h-fade:hover {
+  opacity: 0.6;
+}
+
+.h-zoom {
+  transition: transform 0.3s;
+}
+.h-zoom:hover {
+  transform: scale(1.08);
+}
+
+.h-rotate {
+  transition: transform 0.3s;
+}
+.h-rotate:hover {
+  transform: rotate(8deg);
+}
+
+.h-shadow {
+  transition: box-shadow 0.3s;
+}
+.h-shadow:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.h-blur {
+  transition: filter 0.3s;
+}
+.h-blur:hover {
+  filter: blur(2px);
+}
+
+.h-flip {
+  transition: transform 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+}
+.h-flip:hover {
+  transform: rotateY(180deg);
+}

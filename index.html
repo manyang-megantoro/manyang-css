@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manyang CSS Hover — Demo</title>
+    <link rel="stylesheet" href="demo.css">
+    <!-- Use compiled package CSS from dist for demo previews -->
+    <link rel="stylesheet" href="../dist/manyang.css">
+    <meta name="description" content="Manyang CSS Hover demo — golden ratio layout example">
+</head>
+<body>
+    <main class="split-grid">
+        <section class="panel panel-left" aria-label="Intro panel">
+            <div class="panel-inner">
+                <h1 class="display">Manyang.css</h1>
+                <p class="lead">Animation effects collection — cook with love</p>
+            <div class="panel-actions" style="margin:32px 0 0;">
+                <a class="btn btn-download" href="../dist/manyang.css" download>Download CSS</a>
+                <a class="btn btn-github" href="https://github.com/manyang-megantoro/manyang-css-hover" target="_blank" rel="noopener">View on GitHub</a>
+                <a class="btn btn-npm" href="https://www.npmjs.com/package/manyang-css-hover" target="_blank" rel="noopener">Download from npm</a>
+            </div>
+            <p class="credit" style="margin:18px 0 0;">Installing Manyang.css takes only seconds: 
+                <a href="https://github.com/wideckop/mocassin.css" style="color:#fff;"><strong>Read the documentation</strong></a>
+            </p>
+        </div>
+        </section>
+
+        <section class="panel panel-right" aria-label="Demo panel">
+            <div class="panel-inner right-inner">
+                <article class="demo-item" id="examples">
+                    <img id="hover-demo-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Demo" class="">
+                    <select id="effect-select" class="effect-selector">
+                        <option value="hover-fade">Fade</option>
+                        <option value="hover-zoom">Zoom</option>
+                        <option value="hover-rotate">Rotate</option>
+                        <option value="hover-shadow">Shadow</option>
+                        <option value="hover-blur">Blur</option>
+                        <option value="hover-flip">Flip</option>
+                    </select>
+                </article>
+            </div>
+        </section>
+        </section>
+    </main>
+
+    <script src="demo.js"></script>
+</body>
+</html>
