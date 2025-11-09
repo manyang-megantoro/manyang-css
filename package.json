@@ -1,0 +1,49 @@
+{
+  "name": "manyang-css-hover",
+  "version": "0.0.1",
+  "description": "A small collection of modern CSS hover utilities",
+  "main": "dist/manyang.css",
+  "style": "dist/manyang.css",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manyang-megantoro/manyang-css-hover.git"
+  },
+  "scripts": {
+    "build:sass": "sass src/manyang.scss dist/manyang.sass.css --no-source-map",
+    "build:post": "postcss dist/manyang.sass.css --config ./postcss.config.js -o dist/manyang.css",
+    "build": "npm run build:sass && npm run build:post",
+    "watch:sass": "sass --watch src/manyang.scss:dist/manyang.sass.css",
+    "watch:post": "postcss dist/manyang.sass.css --config ./postcss.config.js -o dist/manyang.css --watch",
+    "watch": "npm-run-all --parallel watch:sass watch:post",
+    "prepare-demo": "npm run build && node ./scripts/copy-to-docs.js"
+  },
+  "keywords": [
+    "css",
+    "hover",
+    "hover-effects",
+    "utilities"
+  ],
+  "author": "Manyang Megantoro",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "cssnano": "^5.1.15",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.30",
+    "postcss-cli": "^10.1.0",
+    "postcss-prefix-selector": "^2.1.1",
+    "postcss-selector-replace": "^1.0.2",
+    "sass": "^1.80.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+.h-blur {
+  transition: filter 0.3s;
+  &:hover {
+    filter: blur(2px);
+  }
+}

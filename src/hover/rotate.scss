@@ -1,0 +1,6 @@
+.h-rotate {
+  transition: transform 0.3s;
+  &:hover {
+    transform: rotate(8deg);
+  }
+}

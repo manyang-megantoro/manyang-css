@@ -1,0 +1,6 @@
+.h-flip {
+  transition: transform 0.4s cubic-bezier(.4,2,.6,1);
+  &:hover {
+    transform: rotateY(180deg);
+  }
+}
