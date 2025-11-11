@@ -118,7 +118,7 @@
     font-size: 1em;
     font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
     scrollbar-width: thin;
-    scrollbar-color: #181818 #0b0b0b;
+    scrollbar-color: #3d3d3d #0b0b0b;
 }
 /* Responsive code block */
 @media (max-width: 600px) {

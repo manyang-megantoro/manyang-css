@@ -34,6 +34,12 @@ fs.copyFileSync(
   path.join(docsDestDir, 'manyang.css')
 );
 
+
+// Write CNAME file for custom domain
+const cnamePath = path.join(ghPagesDir, 'CNAME');
+fs.writeFileSync(cnamePath, 'css.manyang.pro\n');
+console.log('Added CNAME for custom domain: css.manyang.pro');
+
 console.log('✅ GitHub Pages structure prepared in ./gh-pages/');
 console.log('   - Demo: root (/)');
 console.log('   - Docs: /docs/');
