@@ -1,3 +1,62 @@
+.arrow-left {
+    transform: scaleX(-1);
+}
+/* Custom arrow icon for wizard navigation */
+.custom-arrow-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url('https://cdn-icons-png.flaticon.com/512/318/318476.png') no-repeat center center / contain;
+    vertical-align: middle;
+}
+
+.wizard-arrow {
+    /* Remove default padding for icon-only */
+    padding: 0.3em 0.6em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Hide invisible wizard arrows */
+.wizard-arrow.invisible {
+    visibility: hidden;
+}
+/* Wizard stepper fade animation */
+.wizard-step,
+#demo-preview {
+    opacity: 1;
+    transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
+}
+.wizard-step.fade-out,
+#demo-preview.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+.wizard-step.fade-in,
+#demo-preview.fade-in {
+    opacity: 1;
+}
+/* Wizard stepper styles */
+.wizard-step {
+    display: none;
+    margin: 1.5em 0 1em 0;
+}
+.wizard-step.active {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+#demo-preview {
+    margin: 2em 0 1em 0;
+    display: none;
+}
+#demo-preview.active {
+    display: block;
+}
 .panel-left .display {
     font-size: 2.8rem;
 }
@@ -118,7 +177,8 @@
     font-size: 1em;
     font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
     scrollbar-width: thin;
-    scrollbar-color: #181818 #0b0b0b;
+    scrollbar-color: #3d3d3d #0b0b0b;
+    box-sizing: border-box;
 }
 /* Responsive code block */
 @media (max-width: 600px) {
