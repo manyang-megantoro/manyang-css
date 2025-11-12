@@ -1,20 +1,43 @@
 {
-  "hover": {
-    "button": ["flip", "fade", "rotate"],
-    "picture": ["flip", "fade", "zoom", "rotate"],
-    "text": ["fade", "rotate"],
-    "icon": ["flip", "rotate"]
+  "relation": {
+    "hover": {
+      "prefix": "h",
+      "list": {
+        "flip": ["button", "picture", "icon"],
+        "fade": ["button", "picture", "text"],
+        "rotate": ["button", "picture", "text", "icon"],
+        "zoom": ["picture"],
+        "special": {
+          "models": ["button", "picture", "special-element"],
+          "class": {
+            "effectClass": "my-custom-class another-class",
+            "nextClass": "my-next-class"
+          },
+          "html": {
+            "special-element": "<div class='my-custom-class {effectClass}'>Special!</div><div class='{nextClass}'></div>"
+          }
+        }
+      }
+    },
+    "click": {
+      "prefix": "c",
+      "list": {
+        "flip": ["button", "picture", "text", "icon"],
+        "rotate": ["button"],
+        "zoom": ["picture"]
+      }
+    },
+    "drag": {
+      "prefix": "d",
+      "list": {
+        "zoom": ["picture"]
+      }
+    }
   },
-  "click": {
-    "button": ["flip", "rotate"],
-    "picture": ["flip", "zoom"],
-    "text": ["flip"],
-    "icon": ["flip"]
-  },
-  "drag": {
-    "picture": ["zoom"],
-    "button": [],
-    "text": [],
-    "icon": []
+  "model": {
+    "button": "<button class=\"manyang-btn {effectClass}\">Button</button>",
+    "picture": "<img src=\"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80\" alt=\"Demo\" class=\"manyang-img {effectClass}\">",
+    "text": "<span class=\"manyang-text {effectClass}\">Sample Text</span>",
+    "icon": "<i class=\"manyang-icon {effectClass}\" aria-label=\"icon\">★</i>"
   }
 }

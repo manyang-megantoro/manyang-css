@@ -179,6 +179,8 @@
     scrollbar-width: thin;
     scrollbar-color: #3d3d3d #0b0b0b;
     box-sizing: border-box;
+    max-height: 320px;
+    overflow-y: auto;
 }
 /* Responsive code block */
 @media (max-width: 600px) {
