@@ -29,22 +29,31 @@
         <section class="panel panel-right" aria-label="Demo panel">
             <div class="panel-inner right-inner">
                 <article class="demo-item" id="examples">
-                    <img id="hover-demo-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Demo" class="">
-                    <select id="effect-select" class="effect-selector">
-                        <option value="hover-fade">Fade</option>
-                        <option value="hover-zoom">Zoom</option>
-                        <option value="hover-rotate">Rotate</option>
-                        <option value="hover-shadow">Shadow</option>
-                        <option value="hover-blur">Blur</option>
-                        <option value="hover-flip">Flip</option>
-                    </select>
-                    <div class="demo-code-block-wrapper">
-                        <div class="demo-code-toolbar">
-                            <span class="demo-code-lang">HTML</span>
-                            <button id="copy-code-btn">Copy</button>
-                        </div>
-                        <pre class="demo-code-block"><code id="effect-html-code" class="language-html"></code></pre>
-                    </div>
+                                                                    <div id="demo-preview"></div>
+                                                                    <div id="demo-wizard">
+                                                                        <div id="wizard-step-trigger" class="wizard-step">
+                                                                            <button class="wizard-arrow invisible" id="arrow-trigger-left" disabled title="Back"><span class="custom-arrow-icon arrow-left"></span></button>
+                                                                            <select id="trigger-select" class="effect-selector"></select>
+                                                                            <button class="wizard-arrow" id="arrow-trigger-right" title="Next"><span class="custom-arrow-icon"></span></button>
+                                                                        </div>
+                                                                        <div id="wizard-step-model" class="wizard-step">
+                                                                            <button class="wizard-arrow" id="arrow-model-left" title="Back"><span class="custom-arrow-icon arrow-left"></span></button>
+                                                                            <select id="model-select" class="effect-selector"></select>
+                                                                            <button class="wizard-arrow" id="arrow-model-right" title="Next"><span class="custom-arrow-icon"></span></button>
+                                                                        </div>
+                                                                        <div id="wizard-step-effect" class="wizard-step">
+                                                                            <button class="wizard-arrow" id="arrow-effect-left" title="Back"><span class="custom-arrow-icon arrow-left"></span></button>
+                                                                            <select id="effect-select" class="effect-selector"></select>
+                                                                            <button class="wizard-arrow invisible" id="arrow-effect-right" disabled title="Next"><span class="custom-arrow-icon"></span></button>
+                                                                        </div>
+                                                                    </div>
+                                    <div class="demo-code-block-wrapper">
+                                            <div class="demo-code-toolbar">
+                                                    <span class="demo-code-lang">HTML</span>
+                                                    <button id="copy-code-btn">Copy</button>
+                                            </div>
+                                            <pre class="demo-code-block"><code id="effect-html-code" class="language-html"></code></pre>
+                                    </div>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>

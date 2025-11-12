@@ -1,0 +1,20 @@
+{
+  "hover": {
+    "button": ["flip", "fade", "rotate"],
+    "picture": ["flip", "fade", "zoom", "rotate"],
+    "text": ["fade", "rotate"],
+    "icon": ["flip", "rotate"]
+  },
+  "click": {
+    "button": ["flip", "rotate"],
+    "picture": ["flip", "zoom"],
+    "text": ["flip"],
+    "icon": ["flip"]
+  },
+  "drag": {
+    "picture": ["zoom"],
+    "button": [],
+    "text": [],
+    "icon": []
+  }
+}
