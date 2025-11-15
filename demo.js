@@ -18,16 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	const arrowModelLeft = document.getElementById('arrow-model-left');
 	const arrowModelRight = document.getElementById('arrow-model-right');
 
+
 	let effectMap = {};
 	let currentStep = 0; // 0: trigger, 1: effect, 2: model
 
-	fetch('effect-map.json')
-		.then(res => res.json())
-		.then(map => {
-			effectMap = map;
-			populateTrigger();
-			showStep(0);
-		});
+	// Load both effect-map.json (core) and module-map.json (modules)
+	Promise.all([
+		fetch('effect-map.json').then(res => res.json()),
+		fetch('module-map.json').then(res => res.ok ? res.json() : {relation:{},model:{}})
+	]).then(([core, modules]) => {
+		// Merge core and modules
+		effectMap = { relation: { ...core.relation, ...modules.relation }, model: { ...core.model, ...modules.model } };
+		populateTrigger();
+		showStep(0);
+	});
 
 		function populateTrigger() {
 			triggerSelect.innerHTML = '';

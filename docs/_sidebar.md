@@ -1,0 +1,7 @@
+- [Home](README.md)
+- [Quick Start](quickstart.md)
+- [Demo](demo.md)
+- Modules
+  - [Example Module](modules/example-module/README.md)
+    - [Effects](modules/example-module/effects.md)
+    - [Usage](modules/example-module/usage.md)
