@@ -6,7 +6,22 @@
     <title>Manyang CSS Hover — Demo</title>
     <link rel="stylesheet" href="demo.css">
     <!-- Use compiled package CSS from dist for demo previews -->
-    <link rel="stylesheet" href="../dist/manyang.css">
+        <link rel="stylesheet" href="../dist/manyang.css">
+        <!-- Auto-included module CSS -->
+        <script>
+            // Dynamically inject all manyang-*.css from dist/ (except manyang.css itself)
+            fetch('../dist/').then(async res => {
+                if (!res.ok) return;
+                const text = await res.text();
+                const files = Array.from(text.matchAll(/manyang-[^"']+?\.css/g)).map(m => m[0]);
+                files.filter(f => f !== 'manyang.css').forEach(css => {
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = '../dist/' + css;
+                    document.head.appendChild(link);
+                });
+            });
+        </script>
     <meta name="description" content="Manyang CSS Hover demo — golden ratio layout example">
 </head>
 <body>

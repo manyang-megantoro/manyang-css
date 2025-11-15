@@ -2,6 +2,48 @@
 
 Thank you for your interest in contributing to the Manyang CSS Hover project! We welcome contributions from the community. Please follow the guidelines below to ensure a smooth collaboration.
 
+
+
+## Adding a New Module (Effect/Model)
+
+1. **Create a New Module Folder**
+    - Copy the `module/example-module` folder as a template.
+    - Rename the folder to your module's name.
+
+2. **SCSS**
+    - Add your main SCSS file in `module/your-module/scss/manyang-your-module.scss`.
+    - All classes must start with `manyang-` to avoid conflicts.
+
+3. **effect-map.json**
+    - Only extend effects/models for triggers that already exist in the core (e.g., hover, click, drag).
+    - **DO NOT** add a `prefix` property in your module. Prefixes are only defined in the core (`demo/effect-map.json`).
+    - If you need a new trigger, coordinate with the maintainers to add it to the core first.
+    - Example (correct usage):
+       ```json
+       {
+          "relation": {
+             "hover": {
+                "list": {
+                   "example-flip": ["example-box"]
+                }
+             }
+          },
+          "model": {
+             "example-box": "<div class=\"manyang-example-box {effectClass}\">Example Box</div>"
+          }
+       }
+       ```
+
+4. **Automatic Merging**
+    - Run the script `npm run merge-modules` to merge all modules into `demo/module-map.json`.
+    - If your module tries to add a prefix or a new trigger without coordination, the script will warn and ignore those changes.
+
+5. **Test in the Demo**
+    - After merging, your module's effects and models will automatically appear in the demo.
+
+6. **Documentation**
+    - Add or update the README.md in your module folder to describe your module's features.
+
 ## How to Contribute
 
 1. **Fork the Repository**: Start by forking the repository to your own GitHub account.

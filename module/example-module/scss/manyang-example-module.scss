@@ -1,0 +1,14 @@
+// Example module SCSS
+.manyang-example-flip {
+  transition: transform 0.5s;
+  &:hover {
+    transform: rotateY(180deg);
+  }
+}
+
+.manyang-example-fade {
+  transition: opacity 0.5s;
+  &:hover {
+    opacity: 0.3;
+  }
+}

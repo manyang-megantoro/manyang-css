@@ -1,0 +1,13 @@
+{
+  "relation": {
+    "hover": {
+      "list": {
+        "example-flip": ["example-box"],
+        "example-fade": ["example-box"]
+      }
+    }
+  },
+  "model": {
+    "example-box": "<div class=\"manyang-example-box {effectClass}\">Example Box</div>"
+  }
+}
