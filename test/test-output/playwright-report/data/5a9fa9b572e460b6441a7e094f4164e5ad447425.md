@@ -1,0 +1,45 @@
+# Page snapshot
+
+```yaml
+- main [ref=e2]:
+  - region "Intro panel" [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Manyang.css" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Animation effects collection — cook with love
+      - generic [ref=e7]:
+        - link "Download CSS" [ref=e8] [cursor=pointer]:
+          - /url: /manyang-css/dist/manyang.css
+        - link "View on GitHub" [ref=e9] [cursor=pointer]:
+          - /url: https://github.com/manyang-megantoro/manyang-css
+        - link "Download from npm" [ref=e10] [cursor=pointer]:
+          - /url: https://www.npmjs.com/package/manyang-css
+      - paragraph [ref=e11]:
+        - text: "Installing Manyang.css takes only seconds:"
+        - link "Read the documentation" [ref=e12] [cursor=pointer]:
+          - /url: https://manyang-megantoro.github.io/manyang-css/docs
+          - strong [ref=e13]: Read the documentation
+  - region "Demo panel" [ref=e14]:
+    - article [ref=e16]:
+      - img "Demo" [ref=e18]
+      - generic [ref=e20]:
+        - combobox [active] [ref=e21]:
+          - option "Select trigger" [disabled] [selected]
+          - option "Hover"
+          - option "Click"
+          - option "Drag"
+        - button "Next" [ref=e22] [cursor=pointer]
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: HTML
+          - button "Copy" [ref=e27] [cursor=pointer]
+        - code [ref=e29]:
+          - generic [ref=e30]:
+            - generic [ref=e31]: <img
+            - text: src
+            - generic [ref=e32]: ="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+            - text: alt
+            - generic [ref=e33]: ="Demo"
+            - text: class
+            - generic [ref=e34]: ="manyang-img manyang-h-rotate"
+            - text: ">"
+```
