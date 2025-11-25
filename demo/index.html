@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manyang CSS Hover — Demo</title>
+    
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="demo.css">
     <!-- Use compiled package CSS from dist for demo previews -->
         <link rel="stylesheet" href="../dist/manyang.css">
@@ -48,17 +52,23 @@
                                                                     <div id="demo-wizard">
                                                                         <div id="wizard-step-trigger" class="wizard-step">
                                                                             <button class="wizard-arrow invisible" id="arrow-trigger-left" disabled title="Back"><span class="custom-arrow-icon arrow-left"></span></button>
-                                                                            <select id="trigger-select" class="effect-selector"></select>
+                                                                            <div class="selector-wrapper">
+                                                                                <select id="trigger-select" class="effect-selector" aria-label="Select trigger type"></select>
+                                                                            </div>
                                                                             <button class="wizard-arrow" id="arrow-trigger-right" title="Next"><span class="custom-arrow-icon"></span></button>
                                                                         </div>
                                                                         <div id="wizard-step-effect" class="wizard-step">
                                                                             <button class="wizard-arrow" id="arrow-effect-left" title="Back"><span class="custom-arrow-icon arrow-left"></span></button>
-                                                                            <select id="effect-select" class="effect-selector"></select>
+                                                                            <div class="selector-wrapper">
+                                                                                <select id="effect-select" class="effect-selector" aria-label="Select effect type"></select>
+                                                                            </div>
                                                                             <button class="wizard-arrow" id="arrow-effect-right" title="Next"><span class="custom-arrow-icon"></span></button>
                                                                         </div>
                                                                         <div id="wizard-step-model" class="wizard-step">
                                                                             <button class="wizard-arrow" id="arrow-model-left" title="Back"><span class="custom-arrow-icon arrow-left"></span></button>
-                                                                            <select id="model-select" class="effect-selector"></select>
+                                                                            <div class="selector-wrapper">
+                                                                                <select id="model-select" class="effect-selector" aria-label="Select model type"></select>
+                                                                            </div>
                                                                             <button class="wizard-arrow invisible" id="arrow-model-right" disabled title="Next"><span class="custom-arrow-icon"></span></button>
                                                                         </div>
                                                                     </div>
@@ -78,6 +88,12 @@
         </section>
     </main>
 
+    <!-- jQuery (required for Select2) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
     <script src="demo.js"></script>
 </body>
 </html>
