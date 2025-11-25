@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Merge core and modules
 		effectMap = { relation: { ...core.relation, ...modules.relation }, model: { ...core.model, ...modules.model } };
 		populateTrigger();
+		
+		// Initialize Select2 after data is loaded, then show step
+		initializeSelect2();
 		showStep(0);
 	});
 
@@ -58,13 +61,53 @@ document.addEventListener('DOMContentLoaded', function() {
 				placeholder.disabled = true;
 				placeholder.selected = true;
 				effectSelect.appendChild(placeholder);
+				
 				if (!effectMap.relation[trigger] || !effectMap.relation[trigger].list) return;
-				Object.keys(effectMap.relation[trigger].list).forEach(effect => {
-					const opt = document.createElement('option');
-					opt.value = effect;
-					opt.textContent = effect.charAt(0).toUpperCase() + effect.slice(1);
-					effectSelect.appendChild(opt);
+				
+				// Create optgroups for different effect categories
+				const effectCategories = {
+					'Flip': ['flip'],
+					'Fade Effects': [
+						'fade-in', 'fade-out', 'fade-partial', 'fade-up', 'fade-down', 
+						'fade-left', 'fade-right', 'fade-grow', 'fade-shrink', 
+						'fade-pulse', 'fade-glow', 'fade-blur', 'fade-saturate', 
+						'fade-twist', 'fade-slide', 'fade-bounce'
+					],
+					'Transform': ['rotate', 'zoom'],
+					'Special': ['special']
+				};
+				
+				const availableEffects = Object.keys(effectMap.relation[trigger].list);
+				
+				// Create optgroups and add effects
+				Object.entries(effectCategories).forEach(([groupName, effectsInGroup]) => {
+					const effectsToShow = effectsInGroup.filter(effect => availableEffects.includes(effect));
+					
+					if (effectsToShow.length > 0) {
+						const optgroup = document.createElement('optgroup');
+						optgroup.label = groupName;
+						
+						effectsToShow.forEach(effect => {
+							const opt = document.createElement('option');
+							opt.value = effect;
+							opt.textContent = effect.charAt(0).toUpperCase() + effect.slice(1).replace(/-/g, ' ');
+							optgroup.appendChild(opt);
+						});
+						
+						effectSelect.appendChild(optgroup);
+					}
 				});
+				
+				// Refresh Select2 dropdown after populating
+				if (typeof $ !== 'undefined' && $('#effect-select').hasClass('select2-hidden-accessible')) {
+					$('#effect-select').select2('destroy').select2({
+						placeholder: 'Select effect',
+						allowClear: false,
+						width: '300px',
+						minimumResultsForSearch: 3
+					});
+				}
+				
 				populateModel();
 			}
 			function populateModel() {
@@ -77,7 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				placeholder.disabled = true;
 				placeholder.selected = true;
 				modelSelect.appendChild(placeholder);
-				if (!effectMap.relation[trigger] || !effectMap.relation[trigger].list || !effectMap.relation[trigger].list[effect]) return;
+				if (!effectMap.relation[trigger] || !effectMap.relation[trigger].list || !effectMap.relation[trigger].list[effect]) {
+					return;
+				}
 				let effectObj = effectMap.relation[trigger].list[effect];
 				let models = [];
 				if (Array.isArray(effectObj)) {
@@ -92,19 +137,34 @@ document.addEventListener('DOMContentLoaded', function() {
 					opt.textContent = model.charAt(0).toUpperCase() + model.slice(1);
 					modelSelect.appendChild(opt);
 				});
+				
+				// Refresh Select2 dropdown after populating
+				if (typeof $ !== 'undefined' && $('#model-select').hasClass('select2-hidden-accessible')) {
+					$('#model-select').select2('destroy').select2({
+						placeholder: 'Select model',
+						allowClear: false,
+						width: '300px',
+						minimumResultsForSearch: Infinity
+					});
+				}
 			}
 
-	// Wizard navigation
+	// Wizard navigation arrows (keep these for arrow clicks)
 	arrowTriggerRight.addEventListener('click', function() {
 		if (!triggerSelect.value) return;
 		populateEffect();
 		animateStep(0, 1);
 	});
+	
+	// Disable vanilla select events - using Select2 events instead
+	/* 
 	triggerSelect.addEventListener('change', function() {
 		if (!triggerSelect.value) return;
 		populateEffect();
 		animateStep(0, 1);
 	});
+	*/
+	
 	arrowEffectRight.addEventListener('click', function() {
 		if (!effectSelect.value) return;
 		if (shouldSkipModel()) {
@@ -114,6 +174,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			animateStep(1, 2);
 		}
 	});
+	
+	// Disable vanilla select events - using Select2 events instead
+	/*
 	effectSelect.addEventListener('change', function() {
 		if (!effectSelect.value) return;
 		if (shouldSkipModel()) {
@@ -123,19 +186,25 @@ document.addEventListener('DOMContentLoaded', function() {
 			animateStep(1, 2);
 		}
 	});
+	*/
+	
 	arrowModelRight.addEventListener('click', function() {
 		if (!modelSelect.value) return;
 		animateStep(2, 3, true);
 	});
+	
+	// Disable vanilla select events - using Select2 events instead  
+	/*
 	modelSelect.addEventListener('change', function() {
 		if (!modelSelect.value) return;
 		animateStep(2, 3, true);
 	});
+	*/
 
 	// Helper: should skip model step?
-			function shouldSkipModel() {
-				const trigger = triggerSelect.value;
-				const effect = effectSelect.value;
+	function shouldSkipModel() {
+		const trigger = triggerSelect.value;
+		const effect = effectSelect.value;
 				if (!effectMap.relation[trigger] || !effectMap.relation[trigger].list || !effectMap.relation[trigger].list[effect]) return true;
 				let effectObj = effectMap.relation[trigger].list[effect];
 				let models = [];
@@ -149,9 +218,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Wizard navigation (only left arrows for back)
 	arrowEffectLeft.addEventListener('click', function() {
+		preview.classList.remove('active'); // Hide preview when going back
 		animateStep(currentStep, 0);
 	});
 	arrowModelLeft.addEventListener('click', function() {
+		preview.classList.remove('active'); // Hide preview when going back
 		animateStep(currentStep, 1);
 	});
 
@@ -165,14 +236,17 @@ document.addEventListener('DOMContentLoaded', function() {
 			setTimeout(() => {
 				fromEl.classList.remove('active', 'fade-out');
 				toEl.classList.add('active', 'fade-in');
-				if (updatePrev) updatePreview();
+				if (updatePrev) {
+					updatePreview();
+				}
 				// Focus first input in new step
 				if (to === 0) triggerSelect.focus();
 				if (to === 1) effectSelect.focus();
 				if (to === 2) modelSelect.focus();
 				currentStep = to;
 
-				// If just showed preview, after a short delay, reset wizard to first step and keep preview visible
+				// Keep current step active, don't auto-reset
+				/* Commented out auto-reset behavior
 				if (to === 3) {
 					setTimeout(() => {
 						// Reset selects to placeholder
@@ -191,6 +265,14 @@ document.addEventListener('DOMContentLoaded', function() {
 						modelPlaceholder.disabled = true;
 						modelPlaceholder.selected = true;
 						modelSelect.appendChild(modelPlaceholder);
+						
+						// Update Select2 after reset
+						if (typeof $ !== 'undefined') {
+							$('#trigger-select').val('').trigger('change.select2');
+							$('#effect-select').val('').trigger('change.select2');
+							$('#model-select').val('').trigger('change.select2');
+						}
+						
 						// Show trigger step again, keep preview visible
 						preview.classList.add('active');
 						stepTrigger.classList.add('active', 'fade-in');
@@ -198,8 +280,23 @@ document.addEventListener('DOMContentLoaded', function() {
 						triggerSelect.focus();
 					}, 900);
 				}
+				*/
 			}, 350);
 		}
+
+	// Show preview alongside model step (both visible)
+	function showPreviewWithModel() {
+		stepModel.classList.add('active');
+		preview.classList.add('active');
+		currentStep = 2; // Keep current step as model
+	}
+
+	// Show preview alongside effect step (when model is skipped)
+	function showPreviewWithEffect() {
+		stepEffect.classList.add('active');
+		preview.classList.add('active');
+		currentStep = 1; // Keep current step as effect
+	}
 
 	// Hide/show steps (initial only)
 	function showStep(step) {
@@ -226,6 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				const trigger = triggerSelect.value;
 				const effect = effectSelect.value;
 				let model = modelSelect.value;
+				
 				// If model step is skipped, pick the first model that supports this effect
 				let effectObj = effectMap.relation[trigger] && effectMap.relation[trigger].list && effectMap.relation[trigger].list[effect];
 				let models = [];
@@ -234,6 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				} else if (typeof effectObj === 'object' && effectObj.models) {
 					models = effectObj.models;
 				}
+				
 				if ((!model || model === '') && models.length > 0) {
 					model = models[0];
 				}
@@ -281,10 +380,11 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (html) {
 					html = html.replace(/\{(\w+)\}/g, (m, key) => classMap[key] || '');
 				}
-					preview.innerHTML = html;
-					// Pretty-print HTML for code block
-					codeBlock.textContent = formatHtml(html);
-					if(window.Prism){ Prism.highlightElement(codeBlock); }
+				
+				preview.innerHTML = html;
+				// Pretty-print HTML for code block
+				codeBlock.textContent = formatHtml(html);
+				if(window.Prism){ Prism.highlightElement(codeBlock); }
 
 				// Helper: pretty-print HTML string with indentation
 				function formatHtml(html) {
@@ -351,4 +451,61 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	}
+	
+	// Initialize Select2 for all selectors
+	function initializeSelect2() {
+		// Wait for jQuery to be available
+		if (typeof $ === 'undefined') {
+			setTimeout(initializeSelect2, 100);
+			return;
+		}
+		
+		// Initialize Select2 for all effect selectors
+		$('#trigger-select').select2({
+			placeholder: 'Select trigger',
+			allowClear: false,
+			width: '300px',
+			minimumResultsForSearch: 3 // Show search box when 3+ options
+		});
+		
+		$('#effect-select').select2({
+			placeholder: 'Select effect',
+			allowClear: false,
+			width: '300px',
+			minimumResultsForSearch: 3
+		});
+		
+		$('#model-select').select2({
+			placeholder: 'Select model',
+			allowClear: false,
+			width: '300px',
+			minimumResultsForSearch: Infinity // Hide search for model select
+		});
+		
+		// Handle Select2 change events - using same logic as original
+		$('#trigger-select').on('change', function() {
+			if (!triggerSelect.value) return;
+			populateEffect();
+			animateStep(0, 1);
+		});
+		
+		$('#effect-select').on('change', function() {
+			if (!effectSelect.value) return;
+			if (shouldSkipModel()) {
+				updatePreview();
+				showPreviewWithEffect(); // Show preview with effect step
+			} else {
+				populateModel();
+				animateStep(1, 2);
+			}
+		});
+		
+		$('#model-select').on('change', function() {
+			if (!modelSelect.value) return;
+			updatePreview();
+			// Show preview but keep model step active
+			showPreviewWithModel();
+		});
+	}
+	
 });
