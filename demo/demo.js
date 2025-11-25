@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	const arrowEffectLeft = document.getElementById('arrow-effect-left');
 	const arrowEffectRight = document.getElementById('arrow-effect-right');
 	const arrowModelLeft = document.getElementById('arrow-model-left');
-	const arrowModelRight = document.getElementById('arrow-model-right');
+	// No arrowModelRight - model is the last step
 
 
 	let effectMap = {};
 	let currentStep = 0; // 0: trigger, 1: effect, 2: model
+	let selectedModifiers = {};
 
 	// Load both effect-map.json (core) and module-map.json (modules)
 	Promise.all([
@@ -125,11 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
 				}
 				let effectObj = effectMap.relation[trigger].list[effect];
 				let models = [];
+				
+				// Handle both array format and object format with models
 				if (Array.isArray(effectObj)) {
 					models = effectObj;
 				} else if (typeof effectObj === 'object' && effectObj.models) {
 					models = effectObj.models;
 				}
+				
 				models.forEach(model => {
 					// Always show all models, even if not in global model (for custom html)
 					const opt = document.createElement('option');
@@ -147,6 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
 						minimumResultsForSearch: Infinity
 					});
 				}
+
+				// Model is the last step - no need for right arrow
+				// Populate modifiers inline if available
+				populateModifiersInline();
 			}
 
 	// Wizard navigation arrows (keep these for arrow clicks)
@@ -188,9 +196,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 	*/
 	
-	arrowModelRight.addEventListener('click', function() {
-		if (!modelSelect.value) return;
-		animateStep(2, 3, true);
+	arrowModelLeft.addEventListener('click', function() {
+		animateStep(2, 1);
 	});
 	
 	// Disable vanilla select events - using Select2 events instead  
@@ -205,16 +212,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	function shouldSkipModel() {
 		const trigger = triggerSelect.value;
 		const effect = effectSelect.value;
-				if (!effectMap.relation[trigger] || !effectMap.relation[trigger].list || !effectMap.relation[trigger].list[effect]) return true;
-				let effectObj = effectMap.relation[trigger].list[effect];
-				let models = [];
-				if (Array.isArray(effectObj)) {
-					models = effectObj;
-				} else if (typeof effectObj === 'object' && effectObj.models) {
-					models = effectObj.models;
-				}
-				return models.length === 0;
-			}
+		if (!effectMap.relation[trigger] || !effectMap.relation[trigger].list || !effectMap.relation[trigger].list[effect]) return true;
+		let effectObj = effectMap.relation[trigger].list[effect];
+		let models = [];
+		
+		// Handle both array format and object format with models
+		if (Array.isArray(effectObj)) {
+			models = effectObj;
+		} else if (typeof effectObj === 'object' && effectObj.models) {
+			models = effectObj.models;
+		}
+		
+		return models.length === 0;
+	}
 
 	// Wizard navigation (only left arrows for back)
 	arrowEffectLeft.addEventListener('click', function() {
@@ -502,10 +512,190 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		$('#model-select').on('change', function() {
 			if (!modelSelect.value) return;
-			updatePreview();
-			// Show preview but keep model step active
-			showPreviewWithModel();
+			// Show modifiers inline and update preview
+			populateModifiersInline();
 		});
+	}
+
+	// Check if current effect has modifiers
+	function hasModifiers() {
+		const trigger = triggerSelect.value;
+		const effect = effectSelect.value;
+		
+		console.log('hasModifiers check:', trigger, effect);
+		
+		if (!trigger || !effect) {
+			console.log('hasModifiers: false - missing trigger or effect');
+			return false;
+		}
+		
+		const effectData = effectMap.relation[trigger]?.list?.[effect];
+		console.log('effectData:', effectData);
+		
+		if (!effectData) {
+			console.log('hasModifiers: false - no effectData');
+			return false;
+		}
+		
+		// Check if effect data has modifiers property (new format)
+		if (effectData.modifiers) {
+			console.log('hasModifiers: true - found modifiers in effect data');
+			return true;
+		}
+		
+		console.log('hasModifiers: false - no modifiers found');
+		return false;
+	}
+
+	// Populate modifiers inline in model step
+	function populateModifiersInline() {
+		const trigger = triggerSelect.value;
+		const effect = effectSelect.value;
+		
+		const container = document.getElementById('modifiers-container');
+		container.innerHTML = '';
+		container.classList.remove('visible');
+		
+		if (!trigger || !effect) return;
+		
+		// Get modifiers from effect data
+		const effectData = effectMap.relation[trigger]?.list?.[effect];
+		const modifiers = effectData?.modifiers;
+		
+		if (!modifiers) {
+			console.log('No modifiers found for', trigger, effect);
+			// No modifiers, just show preview with basic effect
+			updatePreview();
+			if (!preview.classList.contains('active')) {
+				preview.classList.add('active', 'fade-in');
+			}
+			return;
+		}
+		
+		console.log('Found modifiers:', modifiers);
+		container.classList.add('visible');
+		
+		// Reset selectedModifiers
+		selectedModifiers = {};
+		
+		// Create sliders for each modifier type
+		Object.entries(modifiers).forEach(([modifierName, config]) => {
+			console.log('Creating inline slider for:', modifierName, config);
+			
+			const group = document.createElement('div');
+			group.className = 'modifier-group';
+			
+			const label = document.createElement('div');
+			label.className = 'modifier-label';
+			label.textContent = config.label || modifierName;
+			
+			const sliderContainer = document.createElement('div');
+			sliderContainer.className = 'modifier-slider-container';
+			
+			const slider = document.createElement('input');
+			slider.type = 'range';
+			slider.className = 'modifier-slider';
+			slider.min = 0;
+			slider.max = config.options.length - 1;
+			
+			// Set default value
+			let defaultIndex = config.options.length - 1; // Default to last option
+			if (config.default) {
+				const defaultIdx = config.options.findIndex(opt => opt.value === config.default);
+				if (defaultIdx >= 0) defaultIndex = defaultIdx;
+			}
+			slider.value = defaultIndex;
+			slider.setAttribute('data-modifier', modifierName);
+			
+			const valueDisplay = document.createElement('div');
+			valueDisplay.className = 'modifier-value';
+			valueDisplay.textContent = config.options[slider.value].label;
+			
+			// Create step indicators
+			const stepsContainer = document.createElement('div');
+			stepsContainer.className = 'modifier-steps';
+			config.options.forEach((_, index) => {
+				const step = document.createElement('div');
+				step.className = 'modifier-step';
+				if (index == slider.value) step.classList.add('active');
+				stepsContainer.appendChild(step);
+			});
+			
+			// Update value and steps on change - with real-time preview
+			slider.addEventListener('input', function() {
+				const value = parseInt(this.value);
+				valueDisplay.textContent = config.options[value].label;
+				selectedModifiers[modifierName] = config.options[value];
+				
+				console.log('Modifier changed:', modifierName, selectedModifiers[modifierName]);
+				
+				// Update step indicators
+				stepsContainer.querySelectorAll('.modifier-step').forEach((step, index) => {
+					step.classList.toggle('active', index == value);
+				});
+				
+				// Real-time preview update
+				updatePreviewWithModifiersRealTime();
+			});
+			
+			// Initialize selected modifiers
+			selectedModifiers[modifierName] = config.options[slider.value];
+			
+			sliderContainer.appendChild(slider);
+			group.appendChild(label);
+			group.appendChild(sliderContainer);
+			group.appendChild(valueDisplay);
+			group.appendChild(stepsContainer);
+			container.appendChild(group);
+		});
+		
+		// Initial preview update with default modifiers
+		updatePreviewWithModifiersRealTime();
+	}
+
+	// Update preview with current modifiers - real time in model step
+	function updatePreviewWithModifiersRealTime() {
+		const trigger = triggerSelect.value;
+		const effect = effectSelect.value;
+		const model = modelSelect.value;
+		
+		if (!trigger || !effect || !model) return;
+		
+		// Get base HTML template
+		const htmlTemplate = effectMap.model[model] || '<div class="demo-element">Element</div>';
+		
+		// Apply modifiers to model
+		const modifierClasses = Object.values(selectedModifiers)
+			.map(modifier => modifier.class)
+			.filter(Boolean)
+			.join(' ');
+		
+		const baseClass = `manyang-${effectMap.relation[trigger].prefix}-${effect}`;
+		const fullClass = `${baseClass} ${modifierClasses}`.trim();
+		
+		console.log('updatePreviewWithModifiersRealTime:', {
+			baseClass,
+			modifierClasses,
+			fullClass,
+			selectedModifiers
+		});
+		
+		const htmlWithClass = htmlTemplate.replace('{effectClass}', fullClass);
+		
+		// Update preview in the same step (model step)
+		preview.innerHTML = htmlWithClass;
+		codeBlock.textContent = htmlWithClass;
+		
+		// Show preview alongside model step
+		if (!preview.classList.contains('active')) {
+			preview.classList.add('active', 'fade-in');
+		}
+	}
+
+	// Update preview with current modifiers (deprecated - using real-time now)
+	function updatePreviewWithModifiers() {
+		// This function is no longer needed since we use real-time updates
+		updatePreviewWithModifiersRealTime();
 	}
 	
 });

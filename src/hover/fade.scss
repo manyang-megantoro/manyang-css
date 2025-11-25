@@ -180,3 +180,21 @@
     transform: translateY(-2px);
   }
 }
+
+// Opacity modifier classes - override hover opacity values
+.h-fade-opacity-01 { &:hover { opacity: 0.1 !important; } }
+.h-fade-opacity-02 { &:hover { opacity: 0.2 !important; } }
+.h-fade-opacity-03 { &:hover { opacity: 0.3 !important; } }
+.h-fade-opacity-04 { &:hover { opacity: 0.4 !important; } }
+.h-fade-opacity-05 { &:hover { opacity: 0.5 !important; } }
+.h-fade-opacity-06 { &:hover { opacity: 0.6 !important; } }
+.h-fade-opacity-07 { &:hover { opacity: 0.7 !important; } }
+.h-fade-opacity-08 { &:hover { opacity: 0.8 !important; } }
+.h-fade-opacity-09 { &:hover { opacity: 0.9 !important; } }
+.h-fade-opacity-10 { &:hover { opacity: 1.0 !important; } }
+
+// Duration modifier classes - override transition duration
+.h-fade-duration-fast { transition-duration: 0.15s !important; }
+.h-fade-duration-normal { transition-duration: 0.3s !important; }
+.h-fade-duration-slow { transition-duration: 0.6s !important; }
+.h-fade-duration-slower { transition-duration: 1s !important; }

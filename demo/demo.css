@@ -22,10 +22,151 @@
     justify-content: center;
     height: 44px; /* Match Select2 container height */
     min-height: 44px;
+    margin-top: 0; /* Align with selector, not modifiers */
+    align-self: flex-start; /* Stick to top of flex container */
 }
 /* Hide invisible wizard arrows */
 .wizard-arrow.invisible {
     visibility: hidden;
+}
+
+/* Spacer to balance layout when only one arrow is present */
+.wizard-arrow-spacer {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Inline Modifiers Styling */
+.modifiers-inline {
+    margin: 20px auto 0 auto; /* Center with auto margins */
+    display: none; /* Hidden by default, shown when modifiers available */
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: min(480px, 90vw); /* Responsive width - smaller of 480px or 90% viewport */
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.modifiers-inline.visible {
+    display: flex;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 600px) {
+    .modifiers-inline {
+        max-width: 95vw; /* Even more space on small screens */
+        padding: 15px;
+        margin: 15px auto 0 auto;
+    }
+    
+    .wizard-step.active {
+        gap: 0.5em; /* Smaller gap on mobile */
+        padding: 0 10px; /* Add padding to prevent edge touching */
+        align-items: flex-start; /* Keep arrows aligned with selector */
+    }
+    
+    .selector-wrapper {
+        padding: 0 5px; /* Prevent edge touching */
+    }
+    
+    .wizard-arrow {
+        margin-top: 0; /* Keep arrows aligned with selector on mobile */
+    }
+}
+
+.modifier-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.modifier-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+    text-transform: capitalize;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.modifier-slider-container {
+    position: relative;
+    width: 100%;
+}
+
+.modifier-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    outline: none;
+    cursor: pointer;
+}
+
+.modifier-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.modifier-slider::-webkit-slider-thumb:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+.modifier-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.modifier-slider::-moz-range-thumb:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+.modifier-value {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.modifier-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding: 0 9px;
+}
+
+.modifier-step {
+    width: 2px;
+    height: 8px;
+    background: #ccc;
+    border-radius: 1px;
+}
+
+.modifier-step.active {
+    background: #007bff;
 }
 /* Wizard stepper fade animation */
 .wizard-step,
@@ -49,9 +190,10 @@
 }
 .wizard-step.active {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align to top, let selector group center itself */
     justify-content: center;
     gap: 1em;
+    width: 100%; /* Ensure full width for proper centering */
 }
 #demo-preview {
     margin: 2em 0 1em 0;
@@ -229,10 +371,13 @@
 .selector-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Align items to top */
     flex: 1;
-    width: 300px;
+    width: auto; /* Auto width for flexible centering */
+    max-width: 100%; /* Full width available */
     margin: 0 auto;
+    flex-direction: column; /* Stack selector and modifiers vertically */
+    gap: 0; /* No gap initially, modifiers will add margin-top */
 }
 
 .effect-selector {
@@ -245,9 +390,11 @@
     background: white;
     color: #333;
     outline: none;
-    width: 300px;
+    width: min(300px, 80vw); /* Responsive width */
+    max-width: 300px;
     text-align: center;
     min-height: 44px;
+    box-sizing: border-box; /* Include padding in width */
 }
 .install-snippet {
     display: inline-block;

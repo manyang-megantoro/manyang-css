@@ -4,7 +4,35 @@
       "prefix": "h",
       "list": {
         "flip": ["button", "picture", "icon"],
-        "fade-in": ["button", "picture", "text"],
+        "fade-in": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "opacity": {
+              "type": "select",
+              "label": "Target Opacity",
+              "options": [
+                {"value": "01", "label": "10%", "class": "manyang-h-fade-opacity-01"},
+                {"value": "03", "label": "30%", "class": "manyang-h-fade-opacity-03"},
+                {"value": "05", "label": "50%", "class": "manyang-h-fade-opacity-05"},
+                {"value": "07", "label": "70%", "class": "manyang-h-fade-opacity-07"},
+                {"value": "09", "label": "90%", "class": "manyang-h-fade-opacity-09"},
+                {"value": "10", "label": "100% (Default)", "class": ""}
+              ],
+              "default": "10"
+            },
+            "speed": {
+              "type": "select",
+              "label": "Animation Speed", 
+              "options": [
+                {"value": "fast", "label": "Fast (0.15s)", "class": "manyang-h-fade-duration-fast"},
+                {"value": "normal", "label": "Normal (0.3s)", "class": ""},
+                {"value": "slow", "label": "Slow (0.6s)", "class": "manyang-h-fade-duration-slow"},
+                {"value": "slower", "label": "Slower (1s)", "class": "manyang-h-fade-duration-slower"}
+              ],
+              "default": "normal"
+            }
+          }
+        },
         "fade-out": ["button", "picture", "text"],
         "fade-partial": ["button", "picture", "text"],
         "fade-up": ["button", "picture", "text"],
