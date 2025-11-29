@@ -201,8 +201,22 @@
     text-align: center;
 }
 #demo-preview.active {
-    display: block;
+    display: flex;
+    justify-content: center;
 }
+
+/* Black background container for demo models to ensure visibility during fade effects */
+.bg-preview {
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    border: 2px dashed #0b0b0b;
+}
+
 .panel-left .display {
     font-size: 2.8rem;
 }
@@ -364,7 +378,7 @@
     max-width: 320px;
     border-radius: 12px;
     display: block;
-    margin: 0 auto 18px auto;
+    margin: 0 auto;
     transition: all .3s;
 }
 /* Wizard selector styling */
@@ -716,4 +730,106 @@ html,body{ height:100%; }
 
 .select2-container--default .select2-results__option--selectable {
     padding: 10px 14px;
+}
+
+/* Simple Solid Button Styling for Demo Examples - No Effects */
+.manyang-btn {
+    /* Reset default button styles */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Brand colors - black background with yellow accent */
+    background: #0b0b0b;
+    color: #f7c873;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    border: 1px solid #ffd84a;
+    
+    /* Spacing and shape */
+    padding: 12px 24px;
+    border-radius: 8px;
+    min-width: 120px;
+    
+    /* No transitions or effects - let Manyang.css handle the effects */
+    transition: none;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Only basic focus for accessibility */
+.manyang-btn:focus {
+    outline: 2px solid #f7c873;
+    outline-offset: 2px;
+}
+
+/* .manyang-btn::before{
+    background: #ffd84a !important;
+}
+
+.manyang-btn::after{
+    border: 1px dashed black !important;
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: inherit;
+    transition: none;
+    z-index: 1;
+    pointer-events: none;
+} */
+
+
+/* Simple solid styles for other elements too */
+.manyang-img {
+    border-radius: 8px;
+    max-width: 200px;
+    height: auto;
+    border: 2px solid #f7c873;
+    /* No effects - let Manyang.css handle animations */
+    transition: none;
+    transform: none;
+    box-shadow: none;
+}
+
+.manyang-text {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #0b0b0b;
+    padding: 8px 16px;
+    /* No transitions - let Manyang.css handle effects */
+    transition: none;
+}
+
+.manyang-icon {
+    font-size: 24px;
+    color: #f7c873;
+    display: inline-block;
+    /* No transitions or transforms - let Manyang.css handle effects */
+    transition: none;
+    transform: none;
+}
+
+.manyang-example-box {
+    background: #0b0b0b;
+    color: #f7c873;
+    padding: 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 150px;
+    border: 1px solid #f7c873;
+    /* No effects - let Manyang.css provide the animations */
+    transition: none;
+    transform: none;
+    box-shadow: none;
 }

@@ -45,22 +45,219 @@
 }
 
 .h-fade-left {
-  opacity: 0.8;
-  transform: translateX(0);
-  transition: all 0.4s ease;
+  width: 0%; /* Start from 0 width */
+  opacity: 0.3; /* Start dimmed */
+  overflow: hidden; /* Hide content overflow during animation */
+  transform-origin: left; /* Grow from left side only */
+  transition: none; /* Let animation handle everything */
+  
   &:hover {
-    opacity: 1;
-    transform: translateX(-5px);
+    animation: grow-width-smooth 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 }
 
 .h-fade-right {
-  opacity: 0.8;
-  transform: translateX(0);
-  transition: all 0.4s ease;
+  position: relative;
+  opacity: 0.3; /* Start dimmed */
+  transition: none; /* Let animation handle everything */
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: rgba(0, 0, 0, 0.7); /* Default dark mask */
+    border-radius: inherit; /* Keep same radius but positioned 2px inward */
+    transition: none;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
   &:hover {
+    animation: element-brighten 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    &:before {
+      animation: mask-reveal-right-smooth 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+  }
+}
+
+@keyframes mask-reveal-right-smooth {
+  0% {
+    right: -1px; /* Cover completely */
+  }
+  10% {
+    right: 10%;
+  }
+  20% {
+    right: 20%;
+  }
+  30% {
+    right: 35%;
+  }
+  40% {
+    right: 48%;
+  }
+  50% {
+    right: 58%;
+  }
+  60% {
+    right: 68%;
+  }
+  70% {
+    right: 78%;
+  }
+  80% {
+    right: 85%;
+  }
+  90% {
+    right: 92%;
+  }
+  95% {
+    right: 96%;
+  }
+  100% {
+    right: 100%; /* Completely revealed */
+  }
+}
+
+@keyframes element-brighten {
+  0% {
+    opacity: 0.3; /* Start dimmed */
+  }
+  10% {
+    opacity: 0.35;
+  }
+  20% {
+    opacity: 0.45;
+  }
+  30% {
+    opacity: 0.55;
+  }
+  40% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  60% {
+    opacity: 0.82;
+  }
+  70% {
+    opacity: 0.88;
+  }
+  80% {
+    opacity: 0.93;
+  }
+  90% {
+    opacity: 0.97;
+  }
+  95% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 1; /* Fully bright */
+  }
+}
+
+@keyframes grow-width-smooth {
+  0% {
+    width: 0%; /* Start completely hidden */
+    opacity: 0.3;
+  }
+  10% {
+    width: 8%;
+    opacity: 0.4;
+  }
+  20% {
+    width: 18%;
+    opacity: 0.5;
+  }
+  30% {
+    width: 30%;
+    opacity: 0.6;
+  }
+  40% {
+    width: 42%;
+    opacity: 0.68;
+  }
+  50% {
+    width: 55%;
+    opacity: 0.76;
+  }
+  60% {
+    width: 68%;
+    opacity: 0.83;
+  }
+  70% {
+    width: 78%;
+    opacity: 0.89;
+  }
+  80% {
+    width: 86%;
+    opacity: 0.94;
+  }
+  90% {
+    width: 94%;
+    opacity: 0.98;
+  }
+  95% {
+    width: 98%;
+    opacity: 0.99;
+  }
+  100% {
+    width: 100%; /* Full width */
     opacity: 1;
-    transform: translateX(5px);
+  }
+}
+
+// Mask Color Modifier Classes for fade-right
+.h-fade-dark {
+  &:before {
+    background: rgba(0, 0, 0, 0.8) !important; /* Dark black mask */
+  }
+}
+
+.h-fade-light {
+  &:before {
+    background: rgba(255, 255, 255, 0.8) !important; /* Light white mask */
+  }
+}
+
+.h-fade-brand {
+  &:before {
+    background: rgba(247, 200, 115, 0.8) !important; /* Brand yellow mask */
+  }
+}
+
+.h-fade-gray {
+  &:before {
+    background: rgba(128, 128, 128, 0.7) !important; /* Gray mask */
+  }
+}
+
+.h-fade-blue {
+  &:before {
+    background: rgba(59, 130, 246, 0.7) !important; /* Blue mask */
+  }
+}
+
+.h-fade-red {
+  &:before {
+    background: rgba(239, 68, 68, 0.7) !important; /* Red mask */
+  }
+}
+
+.h-fade-green {
+  &:before {
+    background: rgba(34, 197, 94, 0.7) !important; /* Green mask */
+  }
+}
+
+.h-fade-purple {
+  &:before {
+    background: rgba(168, 85, 247, 0.7) !important; /* Purple mask */
   }
 }
 

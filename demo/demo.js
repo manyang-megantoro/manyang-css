@@ -347,7 +347,14 @@ document.addEventListener('DOMContentLoaded', function() {
 					model = models[0];
 				}
 				if (!trigger || !effect || !model) {
-					preview.innerHTML = '<em>Please select all options.</em>';
+					// Insert message inside bg-preview container
+					let bgPreview = preview.querySelector('.bg-preview');
+					if (!bgPreview) {
+						bgPreview = document.createElement('div');
+						bgPreview.className = 'bg-preview';
+						preview.appendChild(bgPreview);
+					}
+					bgPreview.innerHTML = '<em style="color: #f7c873;">Please select all options.</em>';
 					codeBlock.textContent = '';
 					return;
 				}
@@ -391,7 +398,16 @@ document.addEventListener('DOMContentLoaded', function() {
 					html = html.replace(/\{(\w+)\}/g, (m, key) => classMap[key] || '');
 				}
 				
-				preview.innerHTML = html;
+				// Insert HTML inside bg-preview container instead of replacing entire preview
+				let bgPreview = preview.querySelector('.bg-preview');
+				if (!bgPreview) {
+					// Create bg-preview container if it doesn't exist
+					bgPreview = document.createElement('div');
+					bgPreview.className = 'bg-preview';
+					preview.appendChild(bgPreview);
+				}
+				bgPreview.innerHTML = html;
+				
 				// Pretty-print HTML for code block
 				codeBlock.textContent = formatHtml(html);
 				if(window.Prism){ Prism.highlightElement(codeBlock); }
@@ -682,8 +698,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		const htmlWithClass = htmlTemplate.replace('{effectClass}', fullClass);
 		
-		// Update preview in the same step (model step)
-		preview.innerHTML = htmlWithClass;
+		// Insert HTML inside bg-preview container instead of replacing entire preview
+		let bgPreview = preview.querySelector('.bg-preview');
+		if (!bgPreview) {
+			// Create bg-preview container if it doesn't exist
+			bgPreview = document.createElement('div');
+			bgPreview.className = 'bg-preview';
+			preview.appendChild(bgPreview);
+		}
+		bgPreview.innerHTML = htmlWithClass;
 		codeBlock.textContent = htmlWithClass;
 		
 		// Show preview alongside model step
