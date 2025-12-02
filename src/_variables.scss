@@ -1,7 +1,119 @@
 :root {
+  // Brand Colors (Core Manyang Identity)
+  --mc-brand-primary: #0b0b0b;    // Deep black
+  --mc-brand-secondary: #f7c873;  // Warm yellow
+  --mc-brand-accent: #ffd84a;     // Bright yellow
+  
+  // Semantic Colors (Bootstrap-inspired)
+  --mc-primary: #0d6efd;          // Blue
+  --mc-secondary: #6c757d;        // Gray
+  --mc-success: #198754;          // Green
+  --mc-info: #0dcaf0;             // Cyan
+  --mc-warning: #ffd84a;          // Yellow (using brand accent)
+  --mc-danger: #dc3545;           // Red
+  --mc-light: #f8f9fa;            // Light gray
+  --mc-dark: #212529;             // Dark gray
+  
+  // RGB Variants (for rgba() usage in fade effects)
+  --mc-primary-rgb: 13, 110, 253;
+  --mc-secondary-rgb: 108, 117, 125;
+  --mc-success-rgb: 25, 135, 84;
+  --mc-info-rgb: 13, 202, 240;
+  --mc-warning-rgb: 255, 216, 74;
+  --mc-danger-rgb: 220, 53, 69;
+  --mc-light-rgb: 248, 249, 250;
+  --mc-dark-rgb: 33, 37, 41;
+  
+  // Extended Color Palette
+  --mc-purple: #6f42c1;           // Purple
+  --mc-pink: #d63384;             // Pink
+  --mc-orange: #fd7e14;           // Orange
+  --mc-teal: #20c997;             // Teal
+  --mc-indigo: #6610f2;           // Indigo
+  
+  // Extended RGB Variants
+  --mc-purple-rgb: 111, 66, 193;
+  --mc-pink-rgb: 214, 51, 132;
+  --mc-orange-rgb: 253, 126, 20;
+  --mc-teal-rgb: 32, 201, 151;
+  --mc-indigo-rgb: 102, 16, 242;
+  
+  // Neutral Grays
+  --mc-gray-100: #f8f9fa;
+  --mc-gray-200: #e9ecef;
+  --mc-gray-300: #dee2e6;
+  --mc-gray-400: #ced4da;
+  --mc-gray-500: #adb5bd;
+  --mc-gray-600: #6c757d;
+  --mc-gray-700: #495057;
+  --mc-gray-800: #343a40;
+  --mc-gray-900: #212529;
+  
+  // Background & Text
   --mc-bg: #ffffff;
   --mc-text: #0f172a;
   --mc-accent: #7c5cff;
+  
+  // Design System
   --mc-radius: 8px;
   --mc-border: rgba(15,23,42,.06);
+  
+  // Alpha Variants for Overlays
+  --mc-black-alpha-10: rgba(11, 11, 11, 0.1);
+  --mc-black-alpha-30: rgba(11, 11, 11, 0.3);
+  --mc-black-alpha-50: rgba(11, 11, 11, 0.5);
+  --mc-black-alpha-70: rgba(11, 11, 11, 0.7);
+  --mc-black-alpha-90: rgba(11, 11, 11, 0.9);
+  
+  --mc-white-alpha-10: rgba(255, 255, 255, 0.1);
+  --mc-white-alpha-30: rgba(255, 255, 255, 0.3);
+  --mc-white-alpha-50: rgba(255, 255, 255, 0.5);
+  --mc-white-alpha-70: rgba(255, 255, 255, 0.7);
+  --mc-white-alpha-90: rgba(255, 255, 255, 0.9);
+  
+  // Brand Alpha Variants
+  --mc-yellow-alpha-10: rgba(247, 200, 115, 0.1);
+  --mc-yellow-alpha-30: rgba(247, 200, 115, 0.3);
+  --mc-yellow-alpha-50: rgba(247, 200, 115, 0.5);
+  --mc-yellow-alpha-70: rgba(247, 200, 115, 0.7);
+  --mc-yellow-alpha-90: rgba(247, 200, 115, 0.9);
+}
+
+// SCSS Variables (for use within .scss files)
+// Brand Colors
+$mc-brand-primary: #0b0b0b !default;
+$mc-brand-secondary: #f7c873 !default;
+$mc-brand-accent: #ffd84a !default;
+
+// Semantic Colors
+$mc-primary: #0d6efd !default;
+$mc-secondary: #6c757d !default;
+$mc-success: #198754 !default;
+$mc-info: #0dcaf0 !default;
+$mc-warning: #ffd84a !default;
+$mc-danger: #dc3545 !default;
+$mc-light: #f8f9fa !default;
+$mc-dark: #212529 !default;
+
+// Extended Palette
+$mc-purple: #6f42c1 !default;
+$mc-pink: #d63384 !default;
+$mc-orange: #fd7e14 !default;
+$mc-teal: #20c997 !default;
+$mc-indigo: #6610f2 !default;
+
+// Neutral Grays
+$mc-gray-100: #f8f9fa !default;
+$mc-gray-200: #e9ecef !default;
+$mc-gray-300: #dee2e6 !default;
+$mc-gray-400: #ced4da !default;
+$mc-gray-500: #adb5bd !default;
+$mc-gray-600: #6c757d !default;
+$mc-gray-700: #495057 !default;
+$mc-gray-800: #343a40 !default;
+$mc-gray-900: #212529 !default;
+
+// Alpha Functions for Dynamic Colors
+@function mc-alpha($color, $alpha) {
+  @return rgba($color, $alpha);
 }

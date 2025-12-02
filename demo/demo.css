@@ -733,7 +733,7 @@ html,body{ height:100%; }
 }
 
 /* Simple Solid Button Styling for Demo Examples - No Effects */
-.manyang-btn {
+.my-btn {
     /* Reset default button styles */
     border: none;
     outline: none;
@@ -764,16 +764,16 @@ html,body{ height:100%; }
 }
 
 /* Only basic focus for accessibility */
-.manyang-btn:focus {
+.my-btn:focus {
     outline: 2px solid #f7c873;
     outline-offset: 2px;
 }
 
-/* .manyang-btn::before{
+/* .my-btn::before{
     background: #ffd84a !important;
 }
 
-.manyang-btn::after{
+.my-btn::after{
     border: 1px dashed black !important;
     content: '';
     position: absolute;
@@ -789,7 +789,7 @@ html,body{ height:100%; }
 
 
 /* Simple solid styles for other elements too */
-.manyang-img {
+.my-img {
     border-radius: 8px;
     max-width: 200px;
     height: auto;
@@ -800,7 +800,7 @@ html,body{ height:100%; }
     box-shadow: none;
 }
 
-.manyang-text {
+.my-text {
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 18px;
     font-weight: 500;
@@ -810,7 +810,7 @@ html,body{ height:100%; }
     transition: none;
 }
 
-.manyang-icon {
+.my-icon {
     font-size: 24px;
     color: #f7c873;
     display: inline-block;
@@ -819,7 +819,7 @@ html,body{ height:100%; }
     transform: none;
 }
 
-.manyang-example-box {
+.my-example-box {
     background: #0b0b0b;
     color: #f7c873;
     padding: 20px;

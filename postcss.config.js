@@ -3,7 +3,7 @@ const prefixSelector = require('postcss-prefix-selector');
 module.exports = {
   plugins: [
     prefixSelector({
-      prefix: '.manyang-',
+      prefix: '.my-',
       skipGlobalSelectors: true,
       transform(prefix, selector, prefixedSelector, filePath, rule) {
         // Prefix every class selector as a single class

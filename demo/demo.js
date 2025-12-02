@@ -115,6 +115,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				const trigger = triggerSelect.value;
 				const effect = effectSelect.value;
 				modelSelect.innerHTML = '';
+				
+				// Clear modifiers container when repopulating models
+				const modifiersContainer = document.getElementById('modifiers-container');
+				modifiersContainer.innerHTML = '';
+				modifiersContainer.classList.remove('visible');
+				
 				const placeholder = document.createElement('option');
 				placeholder.value = '';
 				placeholder.textContent = 'Select model';
@@ -150,11 +156,19 @@ document.addEventListener('DOMContentLoaded', function() {
 						width: '300px',
 						minimumResultsForSearch: Infinity
 					});
+				} else if (typeof $ !== 'undefined') {
+					// Initialize Select2 if not already initialized
+					$('#model-select').select2({
+						placeholder: 'Select model',
+						allowClear: false,
+						width: '300px',
+						minimumResultsForSearch: Infinity
+					});
 				}
 
 				// Model is the last step - no need for right arrow
-				// Populate modifiers inline if available
-				populateModifiersInline();
+				// Don't populate modifiers until user selects a model
+				// populateModifiersInline();
 			}
 
 	// Wizard navigation arrows (keep these for arrow clicks)
@@ -229,10 +243,32 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Wizard navigation (only left arrows for back)
 	arrowEffectLeft.addEventListener('click', function() {
 		preview.classList.remove('active'); // Hide preview when going back
+		// Reset effect and model selections when going back to trigger
+		effectSelect.value = '';
+		if (typeof $ !== 'undefined' && $('#effect-select').hasClass('select2-hidden-accessible')) {
+			$('#effect-select').val('').trigger('change');
+		}
+		modelSelect.value = '';
+		if (typeof $ !== 'undefined' && $('#model-select').hasClass('select2-hidden-accessible')) {
+			$('#model-select').val('').trigger('change');
+		}
+		// Clear modifiers container
+		const container = document.getElementById('modifiers-container');
+		container.innerHTML = '';
+		container.classList.remove('visible');
 		animateStep(currentStep, 0);
 	});
 	arrowModelLeft.addEventListener('click', function() {
 		preview.classList.remove('active'); // Hide preview when going back
+		// Reset model selection when going back to effect
+		modelSelect.value = '';
+		if (typeof $ !== 'undefined' && $('#model-select').hasClass('select2-hidden-accessible')) {
+			$('#model-select').val('').trigger('change');
+		}
+		// Clear modifiers container
+		const container = document.getElementById('modifiers-container');
+		container.innerHTML = '';
+		container.classList.remove('visible');
 		animateStep(currentStep, 1);
 	});
 
@@ -376,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						} else if (effectObj.class && typeof effectObj.class === 'string') {
 							classMap = { effectClass: effectObj.class };
 						} else {
-							classMap = { effectClass: `manyang-${triggerPrefix}-${effect}` };
+							classMap = { effectClass: `my-${triggerPrefix}-${effect}` };
 						}
 					} else if (effectObj.html && effectObj.html[model]) {
 						html = effectObj.html[model];
@@ -385,13 +421,13 @@ document.addEventListener('DOMContentLoaded', function() {
 						} else if (effectObj.class && typeof effectObj.class === 'string') {
 							classMap = { effectClass: effectObj.class };
 						} else {
-							classMap = { effectClass: `manyang-${triggerPrefix}-${effect}` };
+							classMap = { effectClass: `my-${triggerPrefix}-${effect}` };
 						}
 					}
 				} else {
 					// Default: use global model and default class
 					html = effectMap.model[model] || '';
-					classMap = { effectClass: `manyang-${triggerPrefix}-${effect}` };
+					classMap = { effectClass: `my-${triggerPrefix}-${effect}` };
 				}
 				// Replace all {key} in html with classMap[key]
 				if (html) {
@@ -518,8 +554,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		$('#effect-select').on('change', function() {
 			if (!effectSelect.value) return;
 			if (shouldSkipModel()) {
-				updatePreview();
-				showPreviewWithEffect(); // Show preview with effect step
+				// Don't show preview automatically - wait for explicit model selection
+				// updatePreview();
+				// showPreviewWithEffect(); // Show preview with effect step
 			} else {
 				populateModel();
 				animateStep(1, 2);
@@ -528,8 +565,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		$('#model-select').on('change', function() {
 			if (!modelSelect.value) return;
-			// Show modifiers inline and update preview
+			// Only show modifiers and preview after model is selected
 			populateModifiersInline();
+			// Ensure preview is shown after model selection
+			if (!preview.classList.contains('active')) {
+				preview.classList.add('active', 'fade-in');
+			}
 		});
 	}
 
@@ -580,10 +621,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		if (!modifiers) {
 			console.log('No modifiers found for', trigger, effect);
-			// No modifiers, just show preview with basic effect
-			updatePreview();
-			if (!preview.classList.contains('active')) {
-				preview.classList.add('active', 'fade-in');
+			// No modifiers, show preview with basic effect (only when called from model selection)
+			if (modelSelect.value) {
+				updatePreview();
+				if (!preview.classList.contains('active')) {
+					preview.classList.add('active', 'fade-in');
+				}
 			}
 			return;
 		}
@@ -686,7 +729,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			.filter(Boolean)
 			.join(' ');
 		
-		const baseClass = `manyang-${effectMap.relation[trigger].prefix}-${effect}`;
+		const baseClass = `my-${effectMap.relation[trigger].prefix}-${effect}`;
 		const fullClass = `${baseClass} ${modifierClasses}`.trim();
 		
 		console.log('updatePreviewWithModifiersRealTime:', {
