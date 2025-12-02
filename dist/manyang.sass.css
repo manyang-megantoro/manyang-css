@@ -1,78 +1,233 @@
 :root {
+  --mc-brand-primary: #0b0b0b;
+  --mc-brand-secondary: #f7c873;
+  --mc-brand-accent: #ffd84a;
+  --mc-primary: #0d6efd;
+  --mc-secondary: #6c757d;
+  --mc-success: #198754;
+  --mc-info: #0dcaf0;
+  --mc-warning: #ffd84a;
+  --mc-danger: #dc3545;
+  --mc-light: #f8f9fa;
+  --mc-dark: #212529;
+  --mc-primary-rgb: 13, 110, 253;
+  --mc-secondary-rgb: 108, 117, 125;
+  --mc-success-rgb: 25, 135, 84;
+  --mc-info-rgb: 13, 202, 240;
+  --mc-warning-rgb: 255, 216, 74;
+  --mc-danger-rgb: 220, 53, 69;
+  --mc-light-rgb: 248, 249, 250;
+  --mc-dark-rgb: 33, 37, 41;
+  --mc-purple: #6f42c1;
+  --mc-pink: #d63384;
+  --mc-orange: #fd7e14;
+  --mc-teal: #20c997;
+  --mc-indigo: #6610f2;
+  --mc-purple-rgb: 111, 66, 193;
+  --mc-pink-rgb: 214, 51, 132;
+  --mc-orange-rgb: 253, 126, 20;
+  --mc-teal-rgb: 32, 201, 151;
+  --mc-indigo-rgb: 102, 16, 242;
+  --mc-gray-100: #f8f9fa;
+  --mc-gray-200: #e9ecef;
+  --mc-gray-300: #dee2e6;
+  --mc-gray-400: #ced4da;
+  --mc-gray-500: #adb5bd;
+  --mc-gray-600: #6c757d;
+  --mc-gray-700: #495057;
+  --mc-gray-800: #343a40;
+  --mc-gray-900: #212529;
   --mc-bg: #ffffff;
   --mc-text: #0f172a;
   --mc-accent: #7c5cff;
   --mc-radius: 8px;
   --mc-border: rgba(15,23,42,.06);
+  --mc-black-alpha-10: rgba(11, 11, 11, 0.1);
+  --mc-black-alpha-30: rgba(11, 11, 11, 0.3);
+  --mc-black-alpha-50: rgba(11, 11, 11, 0.5);
+  --mc-black-alpha-70: rgba(11, 11, 11, 0.7);
+  --mc-black-alpha-90: rgba(11, 11, 11, 0.9);
+  --mc-white-alpha-10: rgba(255, 255, 255, 0.1);
+  --mc-white-alpha-30: rgba(255, 255, 255, 0.3);
+  --mc-white-alpha-50: rgba(255, 255, 255, 0.5);
+  --mc-white-alpha-70: rgba(255, 255, 255, 0.7);
+  --mc-white-alpha-90: rgba(255, 255, 255, 0.9);
+  --mc-yellow-alpha-10: rgba(247, 200, 115, 0.1);
+  --mc-yellow-alpha-30: rgba(247, 200, 115, 0.3);
+  --mc-yellow-alpha-50: rgba(247, 200, 115, 0.5);
+  --mc-yellow-alpha-70: rgba(247, 200, 115, 0.7);
+  --mc-yellow-alpha-90: rgba(247, 200, 115, 0.9);
+}
+
+.h-fade-from-00 {
+  --fade-opacity-from: 0.0 !important;
+}
+
+.h-fade-from-01 {
+  --fade-opacity-from: 0.1 !important;
+}
+
+.h-fade-from-02 {
+  --fade-opacity-from: 0.2 !important;
+}
+
+.h-fade-from-03 {
+  --fade-opacity-from: 0.3 !important;
+}
+
+.h-fade-from-04 {
+  --fade-opacity-from: 0.4 !important;
+}
+
+.h-fade-from-05 {
+  --fade-opacity-from: 0.5 !important;
+}
+
+.h-fade-from-06 {
+  --fade-opacity-from: 0.6 !important;
+}
+
+.h-fade-from-07 {
+  --fade-opacity-from: 0.7 !important;
+}
+
+.h-fade-from-08 {
+  --fade-opacity-from: 0.8 !important;
+}
+
+.h-fade-from-09 {
+  --fade-opacity-from: 0.9 !important;
+}
+
+.h-fade-from-10 {
+  --fade-opacity-from: 1.0 !important;
+}
+
+.h-fade-to-00 {
+  --fade-opacity-to: 0.0 !important;
+}
+
+.h-fade-to-01 {
+  --fade-opacity-to: 0.1 !important;
+}
+
+.h-fade-to-02 {
+  --fade-opacity-to: 0.2 !important;
+}
+
+.h-fade-to-03 {
+  --fade-opacity-to: 0.3 !important;
+}
+
+.h-fade-to-04 {
+  --fade-opacity-to: 0.4 !important;
+}
+
+.h-fade-to-05 {
+  --fade-opacity-to: 0.5 !important;
+}
+
+.h-fade-to-06 {
+  --fade-opacity-to: 0.6 !important;
+}
+
+.h-fade-to-07 {
+  --fade-opacity-to: 0.7 !important;
+}
+
+.h-fade-to-08 {
+  --fade-opacity-to: 0.8 !important;
+}
+
+.h-fade-to-09 {
+  --fade-opacity-to: 0.9 !important;
+}
+
+.h-fade-to-10 {
+  --fade-opacity-to: 1.0 !important;
 }
 
 .h-fade-in {
-  opacity: 0.5;
+  opacity: var(--fade-opacity-from, 0.3);
   transition: opacity 0.3s ease;
 }
 .h-fade-in:hover {
-  opacity: 1;
+  opacity: var(--fade-opacity-to, 1);
 }
 
 .h-fade-out {
-  opacity: 1;
+  opacity: var(--fade-opacity-from, 1);
   transition: opacity 0.3s ease;
 }
 .h-fade-out:hover {
-  opacity: 0.3;
+  opacity: var(--fade-opacity-to, 0.3);
 }
 
 .h-fade-partial {
-  opacity: 1;
+  opacity: var(--fade-opacity-from, 1);
   transition: opacity 0.3s ease;
 }
 .h-fade-partial:hover {
-  opacity: 0.6;
+  opacity: var(--fade-opacity-to, 0.6);
 }
 
 .h-fade-up {
-  opacity: 0.8;
+  opacity: var(--fade-opacity-from, 0.8);
   transform: translateY(0);
   transition: all 0.4s ease;
 }
 .h-fade-up:hover {
-  opacity: 1;
+  opacity: var(--fade-opacity-to, 1);
   transform: translateY(-5px);
 }
 
 .h-fade-down {
-  opacity: 0.8;
+  opacity: var(--fade-opacity-from, 0.8);
   transform: translateY(0);
   transition: all 0.4s ease;
 }
 .h-fade-down:hover {
-  opacity: 1;
+  opacity: var(--fade-opacity-to, 1);
   transform: translateY(5px);
 }
 
 .h-fade-left {
-  width: 0%; /* Start from 0 width */
-  opacity: 0.3; /* Start dimmed */
-  overflow: hidden; /* Hide content overflow during animation */
-  transform-origin: left; /* Grow from left side only */
+  position: relative;
+  opacity: 0; /* Start dimmed like fade-right */
   transition: none; /* Let animation handle everything */
 }
+.h-fade-left:before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px; /* Start from right side */
+  left: -1px;
+  bottom: -1px;
+  background: rgba(0, 0, 0, 0.7); /* Default dark mask */
+  border-radius: inherit; /* Keep same radius */
+  transition: none;
+  z-index: 1;
+  pointer-events: none;
+}
 .h-fade-left:hover {
-  animation: grow-width-smooth 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: h-fade-left-element-brighten 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.h-fade-left:hover:before {
+  animation: h-fade-left-mask-reveal 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .h-fade-right {
   position: relative;
-  opacity: 0.3; /* Start dimmed */
+  opacity: 0; /* Start dimmed */
   transition: none; /* Let animation handle everything */
 }
 .h-fade-right:before {
   content: "";
   position: absolute;
-  top: 2px;
-  left: 2px;
-  right: 2px;
-  bottom: 2px;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
   background: rgba(0, 0, 0, 0.7); /* Default dark mask */
   border-radius: inherit; /* Keep same radius but positioned 2px inward */
   transition: none;
@@ -80,13 +235,13 @@
   pointer-events: none;
 }
 .h-fade-right:hover {
-  animation: element-brighten 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: h-fade-right-element-brighten 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 .h-fade-right:hover:before {
-  animation: mask-reveal-right-smooth 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: h-fade-right-mask-reveal 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-@keyframes mask-reveal-right-smooth {
+@keyframes h-fade-right-mask-reveal {
   0% {
     right: -1px; /* Cover completely */
   }
@@ -124,157 +279,243 @@
     right: 100%; /* Completely revealed */
   }
 }
-@keyframes element-brighten {
+@keyframes h-fade-right-element-brighten {
   0% {
-    opacity: 0.3; /* Start dimmed */
+    opacity: 0; /* Start completely hidden */
   }
   10% {
-    opacity: 0.35;
+    opacity: 0.05; /* Very dim at start */
   }
   20% {
-    opacity: 0.45;
+    opacity: 0.15; /* Gradual increase */
   }
   30% {
-    opacity: 0.55;
+    opacity: 0.3; /* Building up */
   }
   40% {
-    opacity: 0.65;
+    opacity: 0.45; /* Mid-point building */
   }
   50% {
-    opacity: 0.75;
+    opacity: 0.6; /* Approaching visibility */
   }
   60% {
-    opacity: 0.82;
+    opacity: 0.72; /* More visible */
   }
   70% {
-    opacity: 0.88;
+    opacity: 0.82; /* Getting bright */
   }
   80% {
-    opacity: 0.93;
+    opacity: 0.9; /* Almost there */
   }
   90% {
-    opacity: 0.97;
+    opacity: 0.95; /* Nearly full */
   }
   95% {
-    opacity: 0.99;
+    opacity: 0.98; /* Almost perfect */
   }
   100% {
-    opacity: 1; /* Fully bright */
+    opacity: 1; /* Fully bright - perfectly synced with full reveal */
   }
 }
-@keyframes grow-width-smooth {
+@keyframes h-fade-left-mask-reveal {
   0% {
-    width: 0%; /* Start completely hidden */
-    opacity: 0.3;
+    left: -1px; /* Cover completely from left */
   }
   10% {
-    width: 8%;
-    opacity: 0.4;
+    left: 10%;
   }
   20% {
-    width: 18%;
-    opacity: 0.5;
+    left: 20%;
   }
   30% {
-    width: 30%;
-    opacity: 0.6;
+    left: 35%;
   }
   40% {
-    width: 42%;
-    opacity: 0.68;
+    left: 48%;
   }
   50% {
-    width: 55%;
-    opacity: 0.76;
+    left: 58%;
   }
   60% {
-    width: 68%;
-    opacity: 0.83;
+    left: 68%;
   }
   70% {
-    width: 78%;
-    opacity: 0.89;
+    left: 78%;
   }
   80% {
-    width: 86%;
-    opacity: 0.94;
+    left: 85%;
   }
   90% {
-    width: 94%;
-    opacity: 0.98;
+    left: 92%;
   }
   95% {
-    width: 98%;
-    opacity: 0.99;
+    left: 96%;
   }
   100% {
-    width: 100%; /* Full width */
-    opacity: 1;
+    left: 100%; /* Completely revealed */
   }
 }
-.h-fade-dark:before {
-  background: rgba(0, 0, 0, 0.8) !important; /* Dark black mask */
+@keyframes h-fade-left-element-brighten {
+  0% {
+    opacity: 0; /* Start completely hidden */
+  }
+  10% {
+    opacity: 0.05; /* Very dim at start */
+  }
+  20% {
+    opacity: 0.15; /* Gradual increase */
+  }
+  30% {
+    opacity: 0.3; /* Building up */
+  }
+  40% {
+    opacity: 0.45; /* Mid-point building */
+  }
+  50% {
+    opacity: 0.6; /* Approaching visibility */
+  }
+  60% {
+    opacity: 0.72; /* More visible */
+  }
+  70% {
+    opacity: 0.82; /* Getting bright */
+  }
+  80% {
+    opacity: 0.9; /* Almost there */
+  }
+  90% {
+    opacity: 0.95; /* Nearly full */
+  }
+  95% {
+    opacity: 0.98; /* Almost perfect */
+  }
+  100% {
+    opacity: 1; /* Fully bright - perfectly synced with full reveal */
+  }
+}
+.h-fade-brand-primary:before {
+  background: var(--mc-black-alpha-70, rgba(11, 11, 11, 0.7)) !important;
+}
+
+.h-fade-brand-secondary:before {
+  background: var(--mc-yellow-alpha-70, rgba(247, 200, 115, 0.7)) !important;
+}
+
+.h-fade-brand-accent:before {
+  background: rgba(var(--mc-warning-rgb, 255, 216, 74), 0.7) !important;
+}
+
+.h-fade-primary:before {
+  background: rgba(var(--mc-primary-rgb, 13, 110, 253), 0.7) !important;
+}
+
+.h-fade-secondary:before {
+  background: rgba(var(--mc-secondary-rgb, 108, 117, 125), 0.7) !important;
+}
+
+.h-fade-success:before {
+  background: rgba(var(--mc-success-rgb, 25, 135, 84), 0.7) !important;
+}
+
+.h-fade-info:before {
+  background: rgba(var(--mc-info-rgb, 13, 202, 240), 0.7) !important;
+}
+
+.h-fade-warning:before {
+  background: rgba(var(--mc-warning-rgb, 255, 216, 74), 0.7) !important;
+}
+
+.h-fade-danger:before {
+  background: rgba(var(--mc-danger-rgb, 220, 53, 69), 0.7) !important;
 }
 
 .h-fade-light:before {
-  background: rgba(255, 255, 255, 0.8) !important; /* Light white mask */
+  background: rgba(var(--mc-light-rgb, 248, 249, 250), 0.9) !important;
 }
 
-.h-fade-brand:before {
-  background: rgba(247, 200, 115, 0.8) !important; /* Brand yellow mask */
-}
-
-.h-fade-gray:before {
-  background: rgba(128, 128, 128, 0.7) !important; /* Gray mask */
-}
-
-.h-fade-blue:before {
-  background: rgba(59, 130, 246, 0.7) !important; /* Blue mask */
-}
-
-.h-fade-red:before {
-  background: rgba(239, 68, 68, 0.7) !important; /* Red mask */
-}
-
-.h-fade-green:before {
-  background: rgba(34, 197, 94, 0.7) !important; /* Green mask */
+.h-fade-dark:before {
+  background: rgba(var(--mc-dark-rgb, 33, 37, 41), 0.7) !important;
 }
 
 .h-fade-purple:before {
-  background: rgba(168, 85, 247, 0.7) !important; /* Purple mask */
+  background: rgba(var(--mc-purple-rgb, 111, 66, 193), 0.7) !important;
+}
+
+.h-fade-pink:before {
+  background: rgba(var(--mc-pink-rgb, 214, 51, 132), 0.7) !important;
+}
+
+.h-fade-orange:before {
+  background: rgba(var(--mc-orange-rgb, 253, 126, 20), 0.7) !important;
+}
+
+.h-fade-teal:before {
+  background: rgba(var(--mc-teal-rgb, 32, 201, 151), 0.7) !important;
+}
+
+.h-fade-indigo:before {
+  background: rgba(var(--mc-indigo-rgb, 102, 16, 242), 0.7) !important;
+}
+
+.h-fade-black:before {
+  background: var(--mc-black-alpha-70, rgba(11, 11, 11, 0.7)) !important;
+}
+
+.h-fade-white:before {
+  background: var(--mc-white-alpha-90, rgba(255, 255, 255, 0.9)) !important;
+}
+
+.h-fade-brand:before {
+  background: var(--mc-yellow-alpha-70, rgba(247, 200, 115, 0.7)) !important;
+}
+
+.h-fade-gray:before {
+  background: rgba(var(--mc-secondary-rgb, 108, 117, 125), 0.7) !important;
+}
+
+.h-fade-blue:before {
+  background: rgba(var(--mc-primary-rgb, 13, 110, 253), 0.7) !important;
+}
+
+.h-fade-red:before {
+  background: rgba(var(--mc-danger-rgb, 220, 53, 69), 0.7) !important;
+}
+
+.h-fade-green:before {
+  background: rgba(var(--mc-success-rgb, 25, 135, 84), 0.7) !important;
 }
 
 .h-fade-grow {
-  opacity: 0.7;
+  opacity: var(--fade-opacity-from, 0.7);
   transform: scale(1);
   transition: all 0.3s ease;
 }
 .h-fade-grow:hover {
-  opacity: 1;
+  opacity: var(--fade-opacity-to, 1);
   transform: scale(1.05);
 }
 
 .h-fade-shrink {
-  opacity: 1;
+  opacity: var(--fade-opacity-from, 1);
   transform: scale(1);
   transition: all 0.3s ease;
 }
 .h-fade-shrink:hover {
-  opacity: 0.8;
+  opacity: var(--fade-opacity-to, 0.8);
   transform: scale(0.95);
 }
 
 .h-fade-pulse {
-  opacity: 1;
+  opacity: var(--fade-opacity-from, 1);
   transform: scale(1);
   transition: all 0.3s ease;
 }
 .h-fade-pulse:hover {
-  opacity: 0.9;
-  animation: fade-pulse 1s infinite alternate;
+  opacity: var(--fade-opacity-to, 0.9);
+  animation: h-fade-pulse-animation 1s infinite alternate;
 }
 
-@keyframes fade-pulse {
+@keyframes h-fade-pulse-animation {
   0% {
     opacity: 0.9;
     transform: scale(1);
@@ -285,64 +526,64 @@
   }
 }
 .h-fade-glow {
-  opacity: 1;
+  opacity: var(--fade-opacity-from, 1);
   transition: all 0.4s ease;
 }
 .h-fade-glow:hover {
-  opacity: 0.9;
+  opacity: var(--fade-opacity-to, 0.9);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .h-fade-blur {
-  opacity: 1;
+  opacity: var(--fade-opacity-from, 1);
   filter: blur(0px);
   transition: all 0.4s ease;
 }
 .h-fade-blur:hover {
-  opacity: 0.7;
+  opacity: var(--fade-opacity-to, 0.7);
   filter: blur(1px);
 }
 
 .h-fade-saturate {
-  opacity: 0.9;
+  opacity: var(--fade-opacity-from, 0.9);
   filter: saturate(1);
   transition: all 0.4s ease;
 }
 .h-fade-saturate:hover {
-  opacity: 1;
+  opacity: var(--fade-opacity-to, 1);
   filter: saturate(1.5);
 }
 
 .h-fade-twist {
-  opacity: 0.8;
+  opacity: var(--fade-opacity-from, 0.8);
   transform: rotate(0deg) scale(1);
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .h-fade-twist:hover {
-  opacity: 1;
+  opacity: var(--fade-opacity-to, 1);
   transform: rotate(5deg) scale(1.05);
 }
 
 .h-fade-slide {
-  opacity: 0.7;
+  opacity: var(--fade-opacity-from, 0.7);
   transform: translateX(-10px);
   transition: all 0.4s ease;
 }
 .h-fade-slide:hover {
-  opacity: 1;
+  opacity: var(--fade-opacity-to, 1);
   transform: translateX(0);
 }
 
 .h-fade-bounce {
-  opacity: 0.8;
+  opacity: var(--fade-opacity-from, 0.8);
   transition: all 0.3s ease;
 }
 .h-fade-bounce:hover {
-  opacity: 1;
-  animation: fade-bounce 0.6s ease;
+  opacity: var(--fade-opacity-to, 1);
+  animation: h-fade-bounce-animation 0.6s ease;
 }
 
-@keyframes fade-bounce {
+@keyframes h-fade-bounce-animation {
   0%, 20%, 50%, 80%, 100% {
     opacity: 1;
     transform: translateY(0);
@@ -356,46 +597,6 @@
     transform: translateY(-2px);
   }
 }
-.h-fade-opacity-01:hover {
-  opacity: 0.1 !important;
-}
-
-.h-fade-opacity-02:hover {
-  opacity: 0.2 !important;
-}
-
-.h-fade-opacity-03:hover {
-  opacity: 0.3 !important;
-}
-
-.h-fade-opacity-04:hover {
-  opacity: 0.4 !important;
-}
-
-.h-fade-opacity-05:hover {
-  opacity: 0.5 !important;
-}
-
-.h-fade-opacity-06:hover {
-  opacity: 0.6 !important;
-}
-
-.h-fade-opacity-07:hover {
-  opacity: 0.7 !important;
-}
-
-.h-fade-opacity-08:hover {
-  opacity: 0.8 !important;
-}
-
-.h-fade-opacity-09:hover {
-  opacity: 0.9 !important;
-}
-
-.h-fade-opacity-10:hover {
-  opacity: 1 !important;
-}
-
 .h-fade-duration-fast {
   transition-duration: 0.15s !important;
 }

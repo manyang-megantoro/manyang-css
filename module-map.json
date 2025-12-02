@@ -17,37 +17,37 @@
           "modifiers": {
             "opacity": {
               "type": "select",
-              "label": "Target Opacity",
+              "label": "From Opacity",
               "options": [
+                {
+                  "value": "00",
+                  "label": "0%",
+                  "class": "my-h-fade-from-00"
+                },
                 {
                   "value": "01",
                   "label": "10%",
-                  "class": "manyang-h-fade-opacity-01"
+                  "class": "my-h-fade-from-01"
+                },
+                {
+                  "value": "02",
+                  "label": "20%",
+                  "class": "my-h-fade-from-02"
                 },
                 {
                   "value": "03",
-                  "label": "30%",
-                  "class": "manyang-h-fade-opacity-03"
+                  "label": "30% (Default)",
+                  "class": ""
+                },
+                {
+                  "value": "04",
+                  "label": "40%",
+                  "class": "my-h-fade-from-04"
                 },
                 {
                   "value": "05",
                   "label": "50%",
-                  "class": "manyang-h-fade-opacity-05"
-                },
-                {
-                  "value": "07",
-                  "label": "70%",
-                  "class": "manyang-h-fade-opacity-07"
-                },
-                {
-                  "value": "09",
-                  "label": "90%",
-                  "class": "manyang-h-fade-opacity-09"
-                },
-                {
-                  "value": "10",
-                  "label": "100% (Default)",
-                  "class": ""
+                  "class": "my-h-fade-from-05"
                 }
               ],
               "default": "10"
@@ -59,7 +59,7 @@
                 {
                   "value": "fast",
                   "label": "Fast (0.15s)",
-                  "class": "manyang-h-fade-duration-fast"
+                  "class": "my-h-fade-duration-fast"
                 },
                 {
                   "value": "normal",
@@ -69,12 +69,12 @@
                 {
                   "value": "slow",
                   "label": "Slow (0.6s)",
-                  "class": "manyang-h-fade-duration-slow"
+                  "class": "my-h-fade-duration-slow"
                 },
                 {
                   "value": "slower",
                   "label": "Slower (1s)",
-                  "class": "manyang-h-fade-duration-slower"
+                  "class": "my-h-fade-duration-slower"
                 }
               ],
               "default": "normal"
@@ -106,11 +106,16 @@
           "picture",
           "text"
         ],
-        "fade-right": [
-          "button",
-          "picture",
-          "text"
-        ],
+        "fade-right": {
+          "models": [
+            "button",
+            "picture",
+            "text"
+          ],
+          "class": {
+            "effectClass": "my-h-fade-right my-h-fade-warning"
+          }
+        },
         "fade-grow": [
           "button",
           "picture",
@@ -214,10 +219,10 @@
     }
   },
   "model": {
-    "button": "<button class=\"manyang-btn {effectClass}\">Button</button>",
-    "picture": "<img src=\"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80\" alt=\"Demo\" class=\"manyang-img {effectClass}\">",
-    "text": "<span class=\"manyang-text {effectClass}\">Sample Text</span>",
-    "icon": "<i class=\"manyang-icon {effectClass}\" aria-label=\"icon\">★</i>",
+    "button": "<button class=\"my-btn {effectClass}\">Button</button>",
+    "picture": "<img src=\"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80\" alt=\"Demo\" class=\"my-img {effectClass}\">",
+    "text": "<span class=\"my-text {effectClass}\">Sample Text</span>",
+    "icon": "<i class=\"my-icon {effectClass}\" aria-label=\"icon\">★</i>",
     "example-box": "<div class=\"manyang-example-box {effectClass}\">Example Box</div>"
   }
 }
