@@ -15,7 +15,7 @@
             "text"
           ],
           "modifiers": {
-            "opacity": {
+            "opacity-from": {
               "type": "select",
               "label": "From Opacity",
               "options": [
@@ -48,6 +48,38 @@
                   "value": "05",
                   "label": "50%",
                   "class": "my-h-fade-from-05"
+                }
+              ],
+              "default": "10"
+            },
+            "opacity-to": {
+              "type": "select",
+              "label": "To Opacity",
+              "options": [
+                {
+                  "value": "06",
+                  "label": "60%",
+                  "class": "my-h-fade-to-06"
+                },
+                {
+                  "value": "07",
+                  "label": "70%",
+                  "class": "my-h-fade-to-07"
+                },
+                {
+                  "value": "08",
+                  "label": "80%",
+                  "class": "my-h-fade-to-08"
+                },
+                {
+                  "value": "09",
+                  "label": "90%",
+                  "class": "my-h-fade-to-09"
+                },
+                {
+                  "value": "10",
+                  "label": "100% (Default)",
+                  "class": "my-h-fade-to-10"
                 }
               ],
               "default": "10"

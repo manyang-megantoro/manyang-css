@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manyang CSS - Modifier System Test</title>
+  <link rel="stylesheet" href="./dist/manyang.css">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    
+    .section {
+      margin-bottom: 3rem;
+    }
+    
+    .section h2 {
+      color: #444;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .demo-btn {
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .demo-card {
+      padding: 2rem;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .demo-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    code {
+      background: #f5f5f5;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #e83e8c;
+    }
+    
+    .label {
+      display: block;
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Manyang CSS Modifier System</h1>
+    <p class="subtitle">Test semua modifier classes yang baru dibuat</p>
+
+    <!-- Duration Modifiers -->
+    <div class="section">
+      <h2>⏱️ Duration Modifiers (Universal)</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-duration-instant">Instant</button>
+          <span class="label">0s</span>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-duration-fast">Fast</button>
+          <span class="label">0.15s</span>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-duration-normal">Normal</button>
+          <span class="label">0.3s</span>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-duration-slow">Slow</button>
+          <span class="label">0.6s</span>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-duration-slower">Slower</button>
+          <span class="label">1s</span>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-duration-slowest">Slowest</button>
+          <span class="label">1.5s</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Easing Modifiers -->
+    <div class="section">
+      <h2>🎯 Easing Modifiers (Universal)</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-ease-linear">Linear</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-ease-in">Ease In</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-ease-out">Ease Out</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-ease-in-out">Ease In-Out</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-ease-bounce">Bounce</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-ease-elastic">Elastic</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-ease-smooth">Smooth</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scale Modifiers -->
+    <div class="section">
+      <h2>📈 Scale Modifiers (Grow)</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-scale-sm">SM (1.02x)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-scale-md">MD (1.05x)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-scale-lg">LG (1.1x)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-scale-xl">XL (1.15x)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-scale-2x">2X (1.2x)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-scale-3x">3X (1.3x)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Distance Modifiers -->
+    <div class="section">
+      <h2>📏 Distance Modifiers (Directional)</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-up my-h-fade-distance-xs">Up XS (3px)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-up my-h-fade-distance-sm">Up SM (5px)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-up my-h-fade-distance-md">Up MD (10px)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-up my-h-fade-distance-lg">Up LG (20px)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-up my-h-fade-distance-xl">Up XL (30px)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-down my-h-fade-distance-lg">Down LG (20px)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rotation Modifiers -->
+    <div class="section">
+      <h2>🔄 Rotation Modifiers (Twist)</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-twist my-h-fade-rotate-xs">XS (3°)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-twist my-h-fade-rotate-sm">SM (5°)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-twist my-h-fade-rotate-md">MD (10°)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-twist my-h-fade-rotate-lg">LG (15°)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-twist my-h-fade-rotate-xl">XL (25°)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-twist my-h-fade-rotate-2x">2X (45°)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glow Modifiers -->
+    <div class="section">
+      <h2>💡 Glow Modifiers</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-sm">Glow SM</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-md">Glow MD</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-lg">Glow LG</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-xl">Glow XL</button>
+        </div>
+      </div>
+      
+      <h3 style="margin-top: 2rem; color: #666; font-size: 1rem;">Colored Glow</h3>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-primary">Primary Glow</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-success">Success Glow</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-danger">Danger Glow</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-warning">Warning Glow</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-glow-info">Info Glow</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delay Modifiers -->
+    <div class="section">
+      <h2>⏲️ Delay Modifiers (Universal)</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-delay-xs">Delay XS (0.05s)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-delay-sm">Delay SM (0.1s)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-delay-md">Delay MD (0.2s)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-delay-lg">Delay LG (0.3s)</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-delay-xl">Delay XL (0.5s)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complex Combinations -->
+    <div class="section">
+      <h2>🎨 Complex Combinations</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-grow my-h-fade-scale-3x my-h-fade-ease-bounce my-h-fade-duration-slower my-h-fade-glow-primary">
+            Ultra Combo
+          </button>
+          <span class="label">grow + 3x + bounce + slow + glow</span>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-up my-h-fade-distance-xl my-h-fade-ease-elastic my-h-fade-delay-sm">
+            Elastic Up
+          </button>
+          <span class="label">up + 30px + elastic + delay</span>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-twist my-h-fade-rotate-2x my-h-fade-ease-bounce my-h-fade-duration-slower">
+            Bouncy Twist
+          </button>
+          <span class="label">twist + 45° + bounce + slow</span>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-from-00 my-h-fade-to-10 my-h-fade-duration-slowest my-h-fade-ease-smooth my-h-fade-glow-success">
+            Smooth Appear
+          </button>
+          <span class="label">0→100% + smooth + slowest</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Opacity Modifiers -->
+    <div class="section">
+      <h2>🌫️ Opacity Modifiers (CSS Custom Properties)</h2>
+      <div class="grid">
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-from-00">From 0%</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-in my-h-fade-from-05">From 50%</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-out my-h-fade-to-05">To 50%</button>
+        </div>
+        <div>
+          <button class="demo-btn my-h-fade-partial my-h-fade-from-03 my-h-fade-to-08">Custom Range</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

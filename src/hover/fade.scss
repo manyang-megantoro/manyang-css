@@ -555,7 +555,175 @@
 // 4. Backward compatible with defaults
 
 // Duration modifier classes - override transition duration
+// These apply to ALL fade effects globally
+.h-fade-duration-instant { transition-duration: 0s !important; }
 .h-fade-duration-fast { transition-duration: 0.15s !important; }
 .h-fade-duration-normal { transition-duration: 0.3s !important; }
 .h-fade-duration-slow { transition-duration: 0.6s !important; }
 .h-fade-duration-slower { transition-duration: 1s !important; }
+.h-fade-duration-slowest { transition-duration: 1.5s !important; }
+
+// Timing function modifiers - override easing
+// These apply to ALL fade effects globally
+.h-fade-ease-linear { transition-timing-function: linear !important; }
+.h-fade-ease-in { transition-timing-function: ease-in !important; }
+.h-fade-ease-out { transition-timing-function: ease-out !important; }
+.h-fade-ease-in-out { transition-timing-function: ease-in-out !important; }
+.h-fade-ease-bounce { transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55) !important; }
+.h-fade-ease-elastic { transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; }
+.h-fade-ease-smooth { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important; }
+
+// Scale modifiers - specific to grow/shrink/pulse effects
+.h-fade-scale-sm {
+  &:hover { transform: scale(1.02) !important; }
+}
+.h-fade-scale-md {
+  &:hover { transform: scale(1.05) !important; }
+}
+.h-fade-scale-lg {
+  &:hover { transform: scale(1.1) !important; }
+}
+.h-fade-scale-xl {
+  &:hover { transform: scale(1.15) !important; }
+}
+.h-fade-scale-2x {
+  &:hover { transform: scale(1.2) !important; }
+}
+.h-fade-scale-3x {
+  &:hover { transform: scale(1.3) !important; }
+}
+
+// Shrink scale modifiers
+.h-fade-scale-shrink-sm {
+  &:hover { transform: scale(0.98) !important; }
+}
+.h-fade-scale-shrink-md {
+  &:hover { transform: scale(0.95) !important; }
+}
+.h-fade-scale-shrink-lg {
+  &:hover { transform: scale(0.9) !important; }
+}
+
+// Distance modifiers - for directional fades (up/down/left/right/slide)
+.h-fade-distance-xs {
+  &:hover { 
+    &.h-fade-up { transform: translateY(-3px) !important; }
+    &.h-fade-down { transform: translateY(3px) !important; }
+    &.h-fade-slide { transform: translateX(0) !important; }
+  }
+}
+.h-fade-distance-sm {
+  &:hover { 
+    &.h-fade-up { transform: translateY(-5px) !important; }
+    &.h-fade-down { transform: translateY(5px) !important; }
+    &.h-fade-slide { transform: translateX(0) !important; }
+  }
+}
+.h-fade-distance-md {
+  &:hover { 
+    &.h-fade-up { transform: translateY(-10px) !important; }
+    &.h-fade-down { transform: translateY(10px) !important; }
+    &.h-fade-slide { transform: translateX(0) !important; }
+  }
+}
+.h-fade-distance-lg {
+  &:hover { 
+    &.h-fade-up { transform: translateY(-20px) !important; }
+    &.h-fade-down { transform: translateY(20px) !important; }
+    &.h-fade-slide { transform: translateX(0) !important; }
+  }
+}
+.h-fade-distance-xl {
+  &:hover { 
+    &.h-fade-up { transform: translateY(-30px) !important; }
+    &.h-fade-down { transform: translateY(30px) !important; }
+    &.h-fade-slide { transform: translateX(0) !important; }
+  }
+}
+
+// Blur intensity modifiers - specific to blur effect
+.h-fade-blur-light {
+  &:hover { filter: blur(2px) !important; }
+}
+.h-fade-blur-medium {
+  &:hover { filter: blur(4px) !important; }
+}
+.h-fade-blur-heavy {
+  &:hover { filter: blur(8px) !important; }
+}
+.h-fade-blur-extreme {
+  &:hover { filter: blur(15px) !important; }
+}
+
+// Rotation modifiers - specific to twist effect
+.h-fade-rotate-xs {
+  &:hover { transform: rotate(3deg) scale(1.05) !important; }
+}
+.h-fade-rotate-sm {
+  &:hover { transform: rotate(5deg) scale(1.05) !important; }
+}
+.h-fade-rotate-md {
+  &:hover { transform: rotate(10deg) scale(1.05) !important; }
+}
+.h-fade-rotate-lg {
+  &:hover { transform: rotate(15deg) scale(1.05) !important; }
+}
+.h-fade-rotate-xl {
+  &:hover { transform: rotate(25deg) scale(1.05) !important; }
+}
+.h-fade-rotate-2x {
+  &:hover { transform: rotate(45deg) scale(1.05) !important; }
+}
+
+// Glow intensity modifiers - specific to glow effect
+.h-fade-glow-sm {
+  &:hover { box-shadow: 0 0 10px rgba(255, 255, 255, 0.2) !important; }
+}
+.h-fade-glow-md {
+  &:hover { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3) !important; }
+}
+.h-fade-glow-lg {
+  &:hover { box-shadow: 0 0 30px rgba(255, 255, 255, 0.4) !important; }
+}
+.h-fade-glow-xl {
+  &:hover { box-shadow: 0 0 50px rgba(255, 255, 255, 0.5) !important; }
+}
+
+// Glow color modifiers - add colored glow to any fade effect
+.h-fade-glow-primary {
+  &:hover { box-shadow: 0 0 20px rgba(var(--mc-primary-rgb, 13, 110, 253), 0.5) !important; }
+}
+.h-fade-glow-success {
+  &:hover { box-shadow: 0 0 20px rgba(var(--mc-success-rgb, 25, 135, 84), 0.5) !important; }
+}
+.h-fade-glow-danger {
+  &:hover { box-shadow: 0 0 20px rgba(var(--mc-danger-rgb, 220, 53, 69), 0.5) !important; }
+}
+.h-fade-glow-warning {
+  &:hover { box-shadow: 0 0 20px rgba(var(--mc-warning-rgb, 255, 216, 74), 0.5) !important; }
+}
+.h-fade-glow-info {
+  &:hover { box-shadow: 0 0 20px rgba(var(--mc-info-rgb, 13, 202, 240), 0.5) !important; }
+}
+
+// Saturation modifiers - for saturate effect
+.h-fade-saturate-low {
+  &:hover { filter: saturate(1.2) !important; }
+}
+.h-fade-saturate-medium {
+  &:hover { filter: saturate(1.5) !important; }
+}
+.h-fade-saturate-high {
+  &:hover { filter: saturate(2) !important; }
+}
+.h-fade-saturate-extreme {
+  &:hover { filter: saturate(3) !important; }
+}
+
+// Delay modifiers - add delay before animation starts
+// These apply to ALL fade effects globally
+.h-fade-delay-xs { transition-delay: 0.05s !important; }
+.h-fade-delay-sm { transition-delay: 0.1s !important; }
+.h-fade-delay-md { transition-delay: 0.2s !important; }
+.h-fade-delay-lg { transition-delay: 0.3s !important; }
+.h-fade-delay-xl { transition-delay: 0.5s !important; }

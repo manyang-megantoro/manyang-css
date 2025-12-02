@@ -7,52 +7,382 @@
         "fade-in": {
           "models": ["button", "picture", "text"],
           "modifiers": {
-            "opacity": {
+            "opacity-from": {
               "type": "select",
               "label": "From Opacity",
               "options": [
                 {"value": "00", "label": "0%", "class": "my-h-fade-from-00"},
-                {"value": "01", "label": "10%", "class": "my-h-fade-from-01"},
                 {"value": "02", "label": "20%", "class": "my-h-fade-from-02"},
                 {"value": "03", "label": "30% (Default)", "class": ""},
-                {"value": "04", "label": "40%", "class": "my-h-fade-from-04"},
-                {"value": "05", "label": "50%", "class": "my-h-fade-from-05"}
+                {"value": "05", "label": "50%", "class": "my-h-fade-from-05"},
+                {"value": "07", "label": "70%", "class": "my-h-fade-from-07"}
+              ],
+              "default": "03"
+            },
+            "opacity-to": {
+              "type": "select",
+              "label": "To Opacity",
+              "options": [
+                {"value": "05", "label": "50%", "class": "my-h-fade-to-05"},
+                {"value": "07", "label": "70%", "class": "my-h-fade-to-07"},
+                {"value": "09", "label": "90%", "class": "my-h-fade-to-09"},
+                {"value": "10", "label": "100% (Default)", "class": ""}
               ],
               "default": "10"
             },
-            "speed": {
+            "duration": {
               "type": "select",
-              "label": "Animation Speed", 
+              "label": "Duration", 
               "options": [
+                {"value": "instant", "label": "Instant", "class": "my-h-fade-duration-instant"},
                 {"value": "fast", "label": "Fast (0.15s)", "class": "my-h-fade-duration-fast"},
                 {"value": "normal", "label": "Normal (0.3s)", "class": ""},
                 {"value": "slow", "label": "Slow (0.6s)", "class": "my-h-fade-duration-slow"},
-                {"value": "slower", "label": "Slower (1s)", "class": "my-h-fade-duration-slower"}
+                {"value": "slower", "label": "Slower (1s)", "class": "my-h-fade-duration-slower"},
+                {"value": "slowest", "label": "Slowest (1.5s)", "class": "my-h-fade-duration-slowest"}
+              ],
+              "default": "normal"
+            },
+            "easing": {
+              "type": "select",
+              "label": "Easing",
+              "options": [
+                {"value": "ease", "label": "Ease (Default)", "class": ""},
+                {"value": "linear", "label": "Linear", "class": "my-h-fade-ease-linear"},
+                {"value": "ease-in", "label": "Ease In", "class": "my-h-fade-ease-in"},
+                {"value": "ease-out", "label": "Ease Out", "class": "my-h-fade-ease-out"},
+                {"value": "ease-in-out", "label": "Ease In-Out", "class": "my-h-fade-ease-in-out"},
+                {"value": "bounce", "label": "Bounce", "class": "my-h-fade-ease-bounce"},
+                {"value": "elastic", "label": "Elastic", "class": "my-h-fade-ease-elastic"},
+                {"value": "smooth", "label": "Smooth", "class": "my-h-fade-ease-smooth"}
+              ],
+              "default": "ease"
+            },
+            "delay": {
+              "type": "select",
+              "label": "Delay",
+              "options": [
+                {"value": "none", "label": "None (Default)", "class": ""},
+                {"value": "xs", "label": "XS (0.05s)", "class": "my-h-fade-delay-xs"},
+                {"value": "sm", "label": "SM (0.1s)", "class": "my-h-fade-delay-sm"},
+                {"value": "md", "label": "MD (0.2s)", "class": "my-h-fade-delay-md"},
+                {"value": "lg", "label": "LG (0.3s)", "class": "my-h-fade-delay-lg"},
+                {"value": "xl", "label": "XL (0.5s)", "class": "my-h-fade-delay-xl"}
+              ],
+              "default": "none"
+            },
+            "glow": {
+              "type": "select",
+              "label": "Glow Effect",
+              "options": [
+                {"value": "none", "label": "None (Default)", "class": ""},
+                {"value": "white-sm", "label": "White SM", "class": "my-h-fade-glow-sm"},
+                {"value": "white-md", "label": "White MD", "class": "my-h-fade-glow-md"},
+                {"value": "white-lg", "label": "White LG", "class": "my-h-fade-glow-lg"},
+                {"value": "primary", "label": "Primary Color", "class": "my-h-fade-glow-primary"},
+                {"value": "success", "label": "Success Color", "class": "my-h-fade-glow-success"},
+                {"value": "danger", "label": "Danger Color", "class": "my-h-fade-glow-danger"}
+              ],
+              "default": "none"
+            }
+          }
+        },
+        "fade-out": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "duration": {
+              "type": "select",
+              "label": "Duration",
+              "options": [
+                {"value": "fast", "label": "Fast", "class": "my-h-fade-duration-fast"},
+                {"value": "normal", "label": "Normal (Default)", "class": ""},
+                {"value": "slow", "label": "Slow", "class": "my-h-fade-duration-slow"}
+              ],
+              "default": "normal"
+            },
+            "easing": {
+              "type": "select",
+              "label": "Easing",
+              "options": [
+                {"value": "ease", "label": "Ease (Default)", "class": ""},
+                {"value": "ease-in", "label": "Ease In", "class": "my-h-fade-ease-in"},
+                {"value": "ease-out", "label": "Ease Out", "class": "my-h-fade-ease-out"}
+              ],
+              "default": "ease"
+            }
+          }
+        },
+        "fade-partial": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "opacity-to": {
+              "type": "select",
+              "label": "Target Opacity",
+              "options": [
+                {"value": "03", "label": "30%", "class": "my-h-fade-to-03"},
+                {"value": "05", "label": "50%", "class": "my-h-fade-to-05"},
+                {"value": "06", "label": "60% (Default)", "class": ""},
+                {"value": "08", "label": "80%", "class": "my-h-fade-to-08"}
+              ],
+              "default": "06"
+            }
+          }
+        },
+        "fade-up": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "distance": {
+              "type": "select",
+              "label": "Move Distance",
+              "options": [
+                {"value": "xs", "label": "XS (3px)", "class": "my-h-fade-distance-xs"},
+                {"value": "sm", "label": "SM (5px, Default)", "class": ""},
+                {"value": "md", "label": "MD (10px)", "class": "my-h-fade-distance-md"},
+                {"value": "lg", "label": "LG (20px)", "class": "my-h-fade-distance-lg"},
+                {"value": "xl", "label": "XL (30px)", "class": "my-h-fade-distance-xl"}
+              ],
+              "default": "sm"
+            },
+            "easing": {
+              "type": "select",
+              "label": "Easing",
+              "options": [
+                {"value": "ease", "label": "Ease (Default)", "class": ""},
+                {"value": "bounce", "label": "Bounce", "class": "my-h-fade-ease-bounce"},
+                {"value": "elastic", "label": "Elastic", "class": "my-h-fade-ease-elastic"}
+              ],
+              "default": "ease"
+            }
+          }
+        },
+        "fade-down": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "distance": {
+              "type": "select",
+              "label": "Move Distance",
+              "options": [
+                {"value": "xs", "label": "XS (3px)", "class": "my-h-fade-distance-xs"},
+                {"value": "sm", "label": "SM (5px, Default)", "class": ""},
+                {"value": "md", "label": "MD (10px)", "class": "my-h-fade-distance-md"},
+                {"value": "lg", "label": "LG (20px)", "class": "my-h-fade-distance-lg"}
+              ],
+              "default": "sm"
+            }
+          }
+        },
+        "fade-left": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "mask-color": {
+              "type": "select",
+              "label": "Mask Color",
+              "options": [
+                {"value": "black", "label": "Black (Default)", "class": ""},
+                {"value": "primary", "label": "Primary", "class": "my-h-fade-primary"},
+                {"value": "success", "label": "Success", "class": "my-h-fade-success"},
+                {"value": "danger", "label": "Danger", "class": "my-h-fade-danger"},
+                {"value": "warning", "label": "Warning", "class": "my-h-fade-warning"}
+              ],
+              "default": "black"
+            }
+          }
+        },
+        "fade-right": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "mask-color": {
+              "type": "select",
+              "label": "Mask Color",
+              "options": [
+                {"value": "black", "label": "Black (Default)", "class": ""},
+                {"value": "primary", "label": "Primary", "class": "my-h-fade-primary"},
+                {"value": "success", "label": "Success", "class": "my-h-fade-success"},
+                {"value": "danger", "label": "Danger", "class": "my-h-fade-danger"},
+                {"value": "warning", "label": "Warning", "class": "my-h-fade-warning"},
+                {"value": "purple", "label": "Purple", "class": "my-h-fade-purple"},
+                {"value": "pink", "label": "Pink", "class": "my-h-fade-pink"}
+              ],
+              "default": "warning"
+            }
+          }
+        },
+        "fade-grow": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "scale": {
+              "type": "select",
+              "label": "Scale Size",
+              "options": [
+                {"value": "sm", "label": "SM (1.02x)", "class": "my-h-fade-scale-sm"},
+                {"value": "md", "label": "MD (1.05x, Default)", "class": ""},
+                {"value": "lg", "label": "LG (1.1x)", "class": "my-h-fade-scale-lg"},
+                {"value": "xl", "label": "XL (1.15x)", "class": "my-h-fade-scale-xl"},
+                {"value": "2x", "label": "2X (1.2x)", "class": "my-h-fade-scale-2x"},
+                {"value": "3x", "label": "3X (1.3x)", "class": "my-h-fade-scale-3x"}
+              ],
+              "default": "md"
+            },
+            "easing": {
+              "type": "select",
+              "label": "Easing",
+              "options": [
+                {"value": "ease", "label": "Ease (Default)", "class": ""},
+                {"value": "bounce", "label": "Bounce", "class": "my-h-fade-ease-bounce"},
+                {"value": "elastic", "label": "Elastic", "class": "my-h-fade-ease-elastic"}
+              ],
+              "default": "ease"
+            },
+            "glow": {
+              "type": "select",
+              "label": "Add Glow",
+              "options": [
+                {"value": "none", "label": "None (Default)", "class": ""},
+                {"value": "primary", "label": "Primary", "class": "my-h-fade-glow-primary"},
+                {"value": "success", "label": "Success", "class": "my-h-fade-glow-success"},
+                {"value": "warning", "label": "Warning", "class": "my-h-fade-glow-warning"}
+              ],
+              "default": "none"
+            }
+          }
+        },
+        "fade-shrink": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "scale": {
+              "type": "select",
+              "label": "Shrink Size",
+              "options": [
+                {"value": "sm", "label": "SM (0.98x)", "class": "my-h-fade-scale-shrink-sm"},
+                {"value": "md", "label": "MD (0.95x, Default)", "class": ""},
+                {"value": "lg", "label": "LG (0.9x)", "class": "my-h-fade-scale-shrink-lg"}
+              ],
+              "default": "md"
+            }
+          }
+        },
+        "fade-pulse": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "duration": {
+              "type": "select",
+              "label": "Duration",
+              "options": [
+                {"value": "fast", "label": "Fast", "class": "my-h-fade-duration-fast"},
+                {"value": "normal", "label": "Normal (Default)", "class": ""},
+                {"value": "slow", "label": "Slow", "class": "my-h-fade-duration-slow"}
               ],
               "default": "normal"
             }
           }
         },
-        "fade-out": ["button", "picture", "text"],
-        "fade-partial": ["button", "picture", "text"],
-        "fade-up": ["button", "picture", "text"],
-        "fade-down": ["button", "picture", "text"],
-        "fade-left": ["button", "picture", "text"],
-        "fade-right": {
+        "fade-glow": {
           "models": ["button", "picture", "text"],
-          "class": {
-            "effectClass": "my-h-fade-right my-h-fade-warning"
+          "modifiers": {
+            "intensity": {
+              "type": "select",
+              "label": "Glow Intensity",
+              "options": [
+                {"value": "sm", "label": "Small", "class": "my-h-fade-glow-sm"},
+                {"value": "md", "label": "Medium (Default)", "class": ""},
+                {"value": "lg", "label": "Large", "class": "my-h-fade-glow-lg"},
+                {"value": "xl", "label": "Extra Large", "class": "my-h-fade-glow-xl"}
+              ],
+              "default": "md"
+            }
           }
         },
-        "fade-grow": ["button", "picture", "text"],
-        "fade-shrink": ["button", "picture", "text"],
-        "fade-pulse": ["button", "picture", "text"],
-        "fade-glow": ["button", "picture", "text"],
-        "fade-blur": ["button", "picture", "text"],
-        "fade-saturate": ["button", "picture", "text"],
-        "fade-twist": ["button", "picture", "text"],
-        "fade-slide": ["button", "picture", "text"],
-        "fade-bounce": ["button", "picture", "text"],
+        "fade-blur": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "intensity": {
+              "type": "select",
+              "label": "Blur Intensity",
+              "options": [
+                {"value": "light", "label": "Light (2px)", "class": "my-h-fade-blur-light"},
+                {"value": "medium", "label": "Medium (4px, Default)", "class": ""},
+                {"value": "heavy", "label": "Heavy (8px)", "class": "my-h-fade-blur-heavy"},
+                {"value": "extreme", "label": "Extreme (15px)", "class": "my-h-fade-blur-extreme"}
+              ],
+              "default": "medium"
+            }
+          }
+        },
+        "fade-saturate": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "intensity": {
+              "type": "select",
+              "label": "Saturation",
+              "options": [
+                {"value": "low", "label": "Low (1.2x)", "class": "my-h-fade-saturate-low"},
+                {"value": "medium", "label": "Medium (1.5x, Default)", "class": ""},
+                {"value": "high", "label": "High (2x)", "class": "my-h-fade-saturate-high"},
+                {"value": "extreme", "label": "Extreme (3x)", "class": "my-h-fade-saturate-extreme"}
+              ],
+              "default": "medium"
+            }
+          }
+        },
+        "fade-twist": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "rotation": {
+              "type": "select",
+              "label": "Rotation Angle",
+              "options": [
+                {"value": "xs", "label": "XS (3°)", "class": "my-h-fade-rotate-xs"},
+                {"value": "sm", "label": "SM (5°, Default)", "class": ""},
+                {"value": "md", "label": "MD (10°)", "class": "my-h-fade-rotate-md"},
+                {"value": "lg", "label": "LG (15°)", "class": "my-h-fade-rotate-lg"},
+                {"value": "xl", "label": "XL (25°)", "class": "my-h-fade-rotate-xl"},
+                {"value": "2x", "label": "2X (45°)", "class": "my-h-fade-rotate-2x"}
+              ],
+              "default": "sm"
+            },
+            "easing": {
+              "type": "select",
+              "label": "Easing",
+              "options": [
+                {"value": "bounce", "label": "Bounce (Default)", "class": ""},
+                {"value": "elastic", "label": "Elastic", "class": "my-h-fade-ease-elastic"},
+                {"value": "smooth", "label": "Smooth", "class": "my-h-fade-ease-smooth"}
+              ],
+              "default": "bounce"
+            }
+          }
+        },
+        "fade-slide": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "distance": {
+              "type": "select",
+              "label": "Slide Distance",
+              "options": [
+                {"value": "xs", "label": "XS (3px)", "class": "my-h-fade-distance-xs"},
+                {"value": "sm", "label": "SM (5px)", "class": "my-h-fade-distance-sm"},
+                {"value": "md", "label": "MD (10px, Default)", "class": ""},
+                {"value": "lg", "label": "LG (20px)", "class": "my-h-fade-distance-lg"}
+              ],
+              "default": "md"
+            }
+          }
+        },
+        "fade-bounce": {
+          "models": ["button", "picture", "text"],
+          "modifiers": {
+            "duration": {
+              "type": "select",
+              "label": "Duration",
+              "options": [
+                {"value": "fast", "label": "Fast", "class": "my-h-fade-duration-fast"},
+                {"value": "normal", "label": "Normal (Default)", "class": ""},
+                {"value": "slow", "label": "Slow", "class": "my-h-fade-duration-slow"}
+              ],
+              "default": "normal"
+            }
+          }
+        },
         "rotate": ["button", "picture", "text", "icon"],
         "zoom": ["picture"],
         "special": {
